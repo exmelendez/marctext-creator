@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/main.js"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    <table>
+      <form id="marc-form">
+      <tr>
+        <td>Book Title</td>
+        <td><input type="text" id="book-title" size="50"></td>
+      </tr>
+      <tr>
+        <td>Author</td>
+        <td><input type="text" id="author" size="50" placeholder="last name first, followed by a comma (i.e. Smith, Sam)"></td>
+      </tr>
+      <tr>
+        <td>Language</td>
+        <td>
+          <form id="language">
+            <select>
+               <option selected disabled>Language</option>
+               <option value="english">English</option>
+               <option value="spanish">Spanish</option>
+               <option value="dual">Both</option>
+            </select>
+          </form>
+        </td>
+      </tr>
+      <tr>
+        <td>Genre/Holdings</td>
+        <td>
+          <form id="holding">
+            <select>
+               <option selected disabled>Genre</option>
+               <option value="bio">Biography</option>
+               <option value="easy_fic">Easy Fiction</option>
+               <option value="fic">Fiction</option>
+               <option value="folk_fairy">Folklore/Fairytale</option>
+               <option value="non_fic">Non-Fiction</option>
+               <option value="poetry">Poetry</option>
+               <option value="pro">Professional</option>
+               <option value="ref">Reference</option>
+            </select>
+          </form>
+        </td>
+      </tr>
+      <tr>
+        <td>ISBN</td>
+        <td><input id="isbn" type="text" size="50"></td>
+      </tr>
+        <td>Barcode/ID</td>
+        <td><input id="barcode" type="text" size="50"></td>
+      </tr>
+      <tr>
+        <td>Price</td>
+        <td><input id="price" type="text" size="50"></td>
+      </tr>
+      <tr>
+        <td><button id="new-entry">Submit entry</button></td>
+        <td><button id="btnSaveNDownload">Complete & Download</button></td>
+      </tr>
+      <tr>
+        <td>Entries: 0</td>
+      </tr>
+      <tr>
+        <td>Latest Entry: N/A</td>
+      </tr>
+      </form>
+    </table>
+
+</body>
+</html>
