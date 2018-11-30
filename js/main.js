@@ -1,6 +1,7 @@
 var ldrField = "=LDR  00000cam\\\\2200000\\a\\4500";
 var zeroOneField = "=001  \\\\\\95022800";
 var entryArr = [];
+var entryNumber = 0;
 
 $(document).ready(function () {
   
@@ -10,11 +11,11 @@ $(document).ready(function () {
       var author = $('#author').val();
     //   var titleDetails = bookTitle + author;
       var titleDetails = ldrField + "\n" + zeroOneField + "\n\n";
-    
 
       entryArr.push(titleDetails);
-    //   console.log(entryArr);
       document.getElementById("marc-form").reset();
+      entryNumber++;
+      $("#entry-num").text("Entries: " + entryNumber);
     });
     
     $('#btnSaveNDownload').click(function () {
@@ -44,5 +45,7 @@ $(document).ready(function () {
         userLink.setAttribute('download', "someName" + '.txt');
         userLink.setAttribute('href', window.URL.createObjectURL(blob));
         userLink.click();
+        entryNumber = 0;
+        $("#entry-num").text("Entries: " + entryNumber);
       });
 });
