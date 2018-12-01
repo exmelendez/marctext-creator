@@ -1,9 +1,9 @@
-var ldrField = "=LDR  00000cam\\\\2200000\\a\\4500";
+var ldrTag = "=LDR  00000sam\\\\2200000\\a\\4500";
 var zeroOneField = "=001  \\\\\\95022800";
 var entryArr = [];
 var entryNumber = 0;
 
-$(document).ready(function () {
+$(document).ready(function () { console.log(time());
   
     $('#new-entry').click(function(){
       
@@ -49,3 +49,41 @@ $(document).ready(function () {
         $("#entry-num").text("Entries: " + entryNumber);
       });
 });
+
+function time() {
+  var ctrlNum = "";
+  var now = new Date();
+
+  var month = now.getMonth();
+  var day = now.getDate();
+  var yearInit = String(now.getFullYear());
+  var year = yearInit.charAt(2) + yearInit.charAt(3);
+  var hour = now.getHours();
+  var minutes = now.getMinutes();
+  var seconds = now.getSeconds();
+
+  if(day < 10) {
+    day = '0'+ day;
+  }
+
+  if(hour < 10) {
+    hour = '0'+ hour;
+  }
+
+  if(minutes < 10) {
+    minutes = '0'+ minutes;
+  }
+
+  if(seconds < 10) {
+    seconds = '0'+ seconds;
+  }
+
+  ctrlNum+= month;
+  ctrlNum+= day;
+  ctrlNum+= year;
+  ctrlNum+= hour;
+  ctrlNum+= minutes;
+  ctrlNum+= seconds;
+
+  return ctrlNum;
+}
