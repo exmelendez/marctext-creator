@@ -13,58 +13,86 @@
 </head>
 <body>
     <table>
-      <form id="marc-form">
+    <form id="marc-form">
       <tr>
-        <td>Book Title</td>
-        <td><input type="text" id="book-title" size="50"></td>
+        <td class="required">Book Title</td>
+        <td><input autofocus type="text" id="book-title" size="50"></td>
       </tr>
       <tr>
-        <td>Author</td>
+        <td class="required">Author</td>
         <td><input type="text" id="author" size="50" placeholder="last name first, followed by a comma (i.e. Smith, Sam)"></td>
         <td>If no author, write publication name</td>
       </tr>
       <tr>
-        <td>Language</td>
+        <td class="required">Language</td>
         <td>
-          <form id="language">
-            <select>
-               <option selected disabled>Language</option>
-               <option value="english">English</option>
-               <option value="spanish">Spanish</option>
-               <option value="dual">Both</option>
+            <select id="language">
+               <option value="">Language</option>
+               <option value="eng">English</option>
+               <option value="spa">Spanish</option>
+               <option value="spa">Both</option>
             </select>
-          </form>
         </td>
       </tr>
       <tr>
-        <td>Genre/Holdings</td>
+        <td class="required">Genre/Holdings</td>
         <td>
-          <form id="holding">
-            <select>
+            <select id="holding">
                <option selected disabled>Genre</option>
                <option value="bio">Biography</option>
                <option value="easy_fic">Easy Fiction</option>
                <option value="fic">Fiction</option>
-               <option value="folk_fairy">Folklore/Fairytale</option>
+               <option value="folk_fairy">Mythology/Folklore/Fairytale</option>
                <option value="non_fic">Non-Fiction</option>
+               <option value="pic_book">Picture Book</option>
                <option value="poetry">Poetry</option>
                <option value="pro">Professional</option>
                <option value="ref">Reference</option>
             </select>
-          </form>
         </td>
       </tr>
       <tr>
         <td>ISBN</td>
         <td><input id="isbn" type="text" size="50"></td>
       </tr>
-        <td>Barcode/ID</td>
+      <tr>
+          <td class="required">Publication Month</td>
+          <td>
+            <select id="pub-month">
+                <option value="">Publication Month</option>
+                <option value="01">January</option>
+                <option value="02">February</option>
+                <option value="03">March</option>
+                <option value="04">April</option>
+                <option value="05">May</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">August</option>
+                <option value="09">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+                <option value="\\">None</option>
+            </select>
+          </td>
+      </tr>
+      <tr>
+          <td>Publication Day</td>
+          <td><input id="pub-day" type="text" size="50" placeholder="2 digit day (i.e. 7 ='07', 31 ='31') "></td>
+      </tr>
+      <tr>
+          <td>Publication Year</td>
+          <td><input id="pub-year" type="text" size="50" placeholder="4 digit year (i.e. 1998, 2018)"></td>
+      </tr>
+      <tr>
+        <td class="required">Barcode/ID</td>
         <td><input id="barcode" type="text" size="50"></td>
       </tr>
       <tr>
         <td>Price</td>
         <td><input id="price" type="text" size="50"></td>
       </tr>
+    </form>
       <tr>
         <td><button id="new-entry">Submit entry</button></td>
         <td><button id="btnSaveNDownload2">Complete and Download</button></td>
@@ -75,8 +103,8 @@
       <tr>
         <td>Latest Entry: N/A</td>
       </tr>
-      </form>
-    </table>
+  </table>
+
 
 </body>
 </html>

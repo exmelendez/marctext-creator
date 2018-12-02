@@ -21,3 +21,7 @@ button {
     background-color:red;
     color: black;
   }
+
+  .required {
+    font-weight: bold;
+  }
