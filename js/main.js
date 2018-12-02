@@ -13,7 +13,7 @@ $(document).ready(function () {
   
     $('#new-entry').click(function(){
 
-      if($('#pub-day').val().length === 1 || $('#pub-day').val() > 31 || $('#pub-year').val().length === 1 || $('#pub-year').val().length === 2 || $('#pub-year').val().length === 3) {
+      if($('#pub-day').val().length === 1 || $('#pub-day').val() > 31 || $('#pub-year').val().length === 1 || $('#pub-year').val().length === 2 || $('#pub-year').val().length === 3 || $('#book-title').val().charAt($('#book-title').val().length-1)=== '.') {
         alert("incorrect value");
       } else if($('#pub-month').val() === "" || $('#language').val() === "" || $('#book-title').val() === ""){
         alert("missing required field");
@@ -28,6 +28,7 @@ $(document).ready(function () {
         + catalogAgencyTag + "\n"
         + mainTitleTag + $('#book-title').val() + '.' +"\n\n";
 
+        console.log(titleDetails);
         entryArr.push(titleDetails);
         document.getElementById("marc-form").reset();
         entryNumber++;
