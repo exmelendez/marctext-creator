@@ -13,7 +13,7 @@ $(document).ready(function () {
   
     $('#new-entry').click(function(){
 
-      if($('#pub-day').val().length === 1 || $('#pub-day').val() > 31 || $('#pub-year').val().length === 1 || $('#pub-year').val().length === 2 || $('#pub-year').val().length === 3 || $('#book-title').val().charAt($('#book-title').val().length-1)=== '.') {
+      if($('#pub-day').val().length === 1 || $('#pub-day').val() > 31 || $('#pub-year').val().length === 1 || $('#pub-year').val().length === 2 || $('#pub-year').val().length === 3 || $('#book-title').val().charAt($('#book-title').val().length-1) === '.') {
         alert("incorrect value");
       } else if($('#pub-month').val() === "" || $('#language').val() === "" || $('#book-title').val() === ""){
         alert("missing required field");
