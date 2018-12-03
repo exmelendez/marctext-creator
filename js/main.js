@@ -4,6 +4,7 @@ var ctrlNumIdTag = "=003  DLC";
 var dateTimeTranTag = "=005  ";
 var pubDataTag = "=008  ";
 var catalogAgencyTag = "=040  \\\\$aSBCSICA$cSBCSICA";
+var authorTag = "=100  ";
 var mainTitleTag = "=245  10$a";
 
 var entryArr = [];
@@ -13,9 +14,9 @@ $(document).ready(function () {
   
     $('#new-entry').click(function(){
 
-      if($('#pub-day').val().length === 1 || $('#pub-day').val() > 31 || $('#pub-year').val().length === 1 || $('#pub-year').val().length === 2 || $('#pub-year').val().length === 3 || $('#book-title').val().charAt($('#book-title').val().length-1) === '.') {
+      if($('#pub-day').val().length === 1 || $('#pub-day').val() > 31 || $('#pub-year').val().length === 1 || $('#pub-year').val().length === 2 || $('#pub-year').val().length === 3 || $('#book-title').val().charAt($('#book-title').val().length-1) === '.' || $('#author').val().charAt($('#author').val().length-1) === '.') {
         alert("incorrect value");
-      } else if($('#pub-month').val() === "" || $('#language').val() === "" || $('#book-title').val() === ""){
+      } else if($('#pub-month').val() === "" || $('#language').val() === "" || $('#book-title').val() === "" || $('#author').val() === ""){
         alert("missing required field");
       } else {
         var pubData = pubDataTagCreate($('#pub-year').val(), $('#pub-month').val(), $('#pub-day').val(), $('#language').val());
@@ -26,6 +27,7 @@ $(document).ready(function () {
         + dateTimeTranTag + marcDate("dateTimeTran") + "\n" 
         + pubDataTag + pubData + "\n" 
         + catalogAgencyTag + "\n"
+        + authorTag + authorTagSubfieldEval($('#author').val()) + $('#author').val() + "\n"
         + mainTitleTag + $('#book-title').val() + '.' +"\n\n";
 
         console.log(titleDetails);
@@ -72,6 +74,26 @@ function pubDataTagCreate(year, month, day, lang) {
   }
 
   return twoDigitYear + month + day + 's' + fourDigitYear + "\\\\\\\\" + "xxu" + "|||||||||||||||||" + lang + "\\\\";
+}
+
+function authorTagSubfieldEval(author) {
+  var hasComma = containsComma(author);
+  if(hasComma) {
+    return '1\\$a';
+  } else {
+    return '0\\$a';
+  }
+}
+
+function containsComma(author){
+  var hasComma = false;
+  for(var i = 0; i < author.length; i++) {
+    if(author.charAt(i) === ","){
+      hasComma = true;
+      break;
+    }
+  }
+  return hasComma;
 }
 
 function marcDate(type) {
