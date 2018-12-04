@@ -2,10 +2,12 @@ var ldrTag = "=LDR  00000sam\\\\2200000\\a\\4500";
 var ctrlNumberTag = "=001  ";
 var ctrlNumIdTag = "=003  DLC";
 var dateTimeTranTag = "=005  ";
-var pubDataTag = "=008  ";
+var titleCreationInfoTag = "=008  ";
+var isbnPriceTag = "=020  ";
 var catalogAgencyTag = "=040  \\\\$aSBCSICA$cSBCSICA";
 var authorTag = "=100  ";
 var mainTitleTag = "=245  10$a";
+var publishInfoTag = "=260  \\\\";
 
 var entryArr = [];
 var entryNumber = 0;
@@ -14,24 +16,22 @@ $(document).ready(function () {
   
     $('#new-entry').click(function(){
 
-      if($('#pub-day').val().length === 1 || $('#pub-day').val() > 31 || $('#pub-year').val().length === 1 || $('#pub-year').val().length === 2 || $('#pub-year').val().length === 3 || $('#book-title').val().charAt($('#book-title').val().length-1) === '.' || $('#author').val().charAt($('#author').val().length-1) === '.') {
+      if($('#pub-year').val().length === 1 || $('#pub-year').val().length === 2 || $('#pub-year').val().length === 3) {
         alert("incorrect value");
-      } else if($('#pub-month').val() === "" || $('#language').val() === "" || $('#book-title').val() === "" || $('#author').val() === ""){
-        alert("missing required field");
-      } else {
-        var pubData = pubDataTagCreate($('#pub-year').val(), $('#pub-month').val(), $('#pub-day').val(), $('#language').val());
-        
-        var titleDetails = ldrTag + "\n" 
-        + ctrlNumberTag + marcDate("ctrlNum") + "\n" 
-        + ctrlNumIdTag + "\n" 
-        + dateTimeTranTag + marcDate("dateTimeTran") + "\n" 
-        + pubDataTag + pubData + "\n" 
-        + catalogAgencyTag + "\n"
-        + authorTag + authorTagSubfieldEval($('#author').val()) + $('#author').val() + "\n"
-        + mainTitleTag + $('#book-title').val() + '.' +"\n\n";
 
-        console.log(titleDetails);
-        entryArr.push(titleDetails);
+      } else if($('#language').val() === "" || $('#book-title').val() === "" || $('#author').val() === "" || $('#pub-year').val() === ""){
+        alert("missing required field");
+
+      } else {
+          var createType;
+        
+          if($('#isbn').val() === ""){
+            createType = createRecordWithoutISBN();
+          } else {
+            createType = createRecordWithISBN();
+          }
+
+        entryArr.push(createType);
         document.getElementById("marc-form").reset();
         entryNumber++;
         $("#entry-num").text("Entries: " + entryNumber);
@@ -53,36 +53,103 @@ $(document).ready(function () {
         userLink.click();
         entryNumber = 0;
         $("#entry-num").text("Entries: " + entryNumber);
+        $("#last-entry").text("");
         }
       });
 });
 
-function pubDataTagCreate(year, month, day, lang) {
-  var twoDigitYear = "";
-  var fourDigitYear = year;
-
-  if(year === "") {
-    twoDigitYear = "\\\\";
-    fourDigitYear = "\\\\\\\\";
-  } else {
-    twoDigitYear = year.charAt(2) + year.charAt(3);
-    fourDigitYear = year;
-  }
-
-  if(day === "") {
-    day = "\\\\";
-  }
-
-  return twoDigitYear + month + day + 's' + fourDigitYear + "\\\\\\\\" + "xxu" + "|||||||||||||||||" + lang + "\\\\";
+function createRecordWithoutISBN(){
+  var titleCreateData = tag008Create($('#pub-year').val(), $('#language').val());
+        
+        var titleDetails = ldrTag + "\n" 
+        + ctrlNumberTag + marcDate("ctrlNum") + "\n" 
+        + ctrlNumIdTag + "\n" 
+        + dateTimeTranTag + marcDate("dateTimeTran") + "\n" 
+        + titleCreationInfoTag + titleCreateData + "\n" 
+        + catalogAgencyTag + "\n"
+        + authorTag + tag100Create($('#author').val(), $('#author-unknown').is(':checked')) + "\n"
+        + mainTitleTag + tag245Create($('#book-title').val(), $('#author').val(), $('#author-unknown').is(':checked')) + "\n"
+        + publishInfoTag + tag260Create($('#pub-locale').val(),$('#publisher').val(),$('#pub-year').val(),$('#pub-year-unknown').is(':checked')) +"\n\n";
+        
+        console.log(titleDetails);
+        $("#last-entry").text("Last entry: " + $('#book-title').val() + "  |  ID: 1234597891");
+        return titleDetails;
 }
 
-function authorTagSubfieldEval(author) {
-  var hasComma = containsComma(author);
-  if(hasComma) {
-    return '1\\$a';
-  } else {
-    return '0\\$a';
+function createRecordWithISBN(){
+
+}
+
+function tag008Create(pubYear, lang) {
+  var date = marcDate("tag008MarcCreate");
+  
+  return date + 's' + pubYear + "\\\\\\\\" + "xxu" + "|||||||||||||||||" + lang + "\\\\";
+}
+
+function tag100Create(author, isPublisher) {
+  var tagPrefix = "0\\$a";
+
+  if(!isPublisher && containsComma(author)){
+    tagPrefix = "1\\$a";
+  } 
+  return tagPrefix + periodCheckAdd(author);
+}
+
+function tag245Create(bookTitle, author, isPublisher) { 
+  var authorStr = tag100Create(author, isPublisher);
+  var authorSubField = "";
+
+  if(authorStr.charAt(0) === "1") {
+    var lastName = '';
+    var index;
+
+    for(var i = 0; i < author.length; i++) {
+      if(author.charAt(i) != ',') {
+        lastName += author.charAt(i);
+      } else {
+        index = i + 2;
+        break;
+      }
+    }
+
+    for(;index < author.length; index++) {
+      authorSubField += author.charAt(index);
+    }
+
+    // authorSubField += " " + lastName;
+    author = authorSubField + " " + lastName;
   }
+  return bookTitle + " /" + "$c" + periodCheckAdd(author);
+}
+
+function tag260Create(location, publisher, pubYear, isDateUnknown) {
+  if(location === ""){
+    location = "[s.l.] :"
+  } else {
+    location = "$a" + location + " :";
+  }
+
+  if(publisher === ""){
+    publisher = "[s.n.],"
+  } else {
+    publisher = "$b" + publisher + ",";
+  }
+
+  if(isDateUnknown){
+    pubYear = "$c[" + pubYear + "?]";
+  } else {
+    pubYear = "$c" + pubYear + ".";
+  }
+
+  return location + publisher + pubYear;
+}
+
+function periodCheckAdd(inputStr){
+  if(inputStr.charAt(inputStr.length-1) != '.') {
+    inputStr = inputStr + '.';
+  }
+
+  return inputStr;
 }
 
 function containsComma(author){
@@ -106,6 +173,8 @@ function marcDate(type) {
   var minutes = now.getMinutes();
   var seconds = now.getSeconds();
 
+  var year = fourDigYear.charAt(2) + fourDigYear.charAt(3);
+
   if(day < 10) {
     day = '0'+ day;
   }
@@ -124,7 +193,6 @@ function marcDate(type) {
 
   switch (type) {
     case "ctrlNum":
-      var year = fourDigYear.charAt(2) + fourDigYear.charAt(3);
       var ctrlNum = "";
       
       ctrlNum+= month;
@@ -142,5 +210,13 @@ function marcDate(type) {
       dateTimeTranTag += fourDigYear + month + day + hour + minutes + seconds + ".0";
 
       return dateTimeTranTag;
+
+    case "tag008MarcCreate":
+      var tag008 = "";
+      month+= 1;
+      
+      tag008 = year + month + day;
+
+      return tag008;
   }
 }

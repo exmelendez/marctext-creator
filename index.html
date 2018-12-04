@@ -20,14 +20,22 @@
       </tr>
       <tr>
         <td class="required">Author</td>
-        <td><input type="text" id="author" size="50" placeholder="last name first, followed by a comma (i.e. Smith, Sam)"></td>
-        <td>If no author, write publication name</td>
+        <td><input type="text" id="author" size="50" placeholder="last name first (i.e. Smith, Sam)"></td>
+        <td><input id="author-unknown" type="checkbox">publisher name</td>
       </tr>
       <tr>
+        <td></td>
+        <td>If no author, write publisher name & check box.</td>
+      </tr>
+      <tr>
+      <tr>
+        <td></td>
+        <td>Include "," & space if providing last/first name.</td>
+      </tr>
         <td class="required">Language</td>
         <td>
             <select id="language">
-               <option value="">Language</option>
+               <option selected disabled>Language</option>
                <option value="eng">English</option>
                <option value="spa">Spanish</option>
                <option value="spa">Both</option>
@@ -56,33 +64,21 @@
         <td><input id="isbn" type="text" size="50"></td>
       </tr>
       <tr>
-          <td class="required">Publication Month</td>
-          <td>
-            <select id="pub-month">
-                <option value="">Publication Month</option>
-                <option value="01">January</option>
-                <option value="02">February</option>
-                <option value="03">March</option>
-                <option value="04">April</option>
-                <option value="05">May</option>
-                <option value="06">June</option>
-                <option value="07">July</option>
-                <option value="08">August</option>
-                <option value="09">September</option>
-                <option value="10">October</option>
-                <option value="11">November</option>
-                <option value="12">December</option>
-                <option value="\\">None</option>
-            </select>
-          </td>
+        <td>Publish Location</td>
+        <td><input id="pub-locale" type="text" size="50"></td>
       </tr>
       <tr>
-          <td>Publication Day</td>
-          <td><input id="pub-day" type="text" size="50" placeholder="2 digit day (i.e. 7 ='07', 31 ='31') "></td>
+        <td>Publisher</td>
+        <td><input id="publisher" type="text" size="50"></td>
       </tr>
       <tr>
-          <td>Publication Year</td>
-          <td><input id="pub-year" type="text" size="50" placeholder="4 digit year (i.e. 1998, 2018)"></td>
+        <td class="required">Publish Year</td>
+        <td><input id="pub-year" type="text" size="50" placeholder="4 digit (i.e. 1998, 2018) Copyright year can be used"></td>
+        <td><input id="pub-year-unknown" type="checkbox">probable date</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>required, if unsure type any year & check box</td>
       </tr>
       <tr>
         <td class="required">Barcode/ID</td>
@@ -97,14 +93,11 @@
         <td><button id="new-entry">Submit entry</button></td>
         <td><button id="btnSaveNDownload2">Complete and Download</button></td>
       </tr>
-      <tr>
-        <td id="entry-num">Entries: 0</td>
-      </tr>
-      <tr>
-        <td>Latest Entry: N/A</td>
-      </tr>
   </table>
-
+  <p>
+    <div id="entry-num">Entries: 0</div>
+    <div id="last-entry"></div>
+  </p>
 
 </body>
 </html>
