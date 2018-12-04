@@ -8,6 +8,7 @@ var catalogAgencyTag = "=040  \\\\$aSBCSICA$cSBCSICA";
 var authorTag = "=100  ";
 var mainTitleTag = "=245  10$a";
 var publishInfoTag = "=260  \\\\";
+var titleSizeTag = "=300  \\\\$a";
 
 var entryArr = [];
 var entryNumber = 0;
@@ -69,7 +70,8 @@ function createRecordWithoutISBN(){
         + catalogAgencyTag + "\n"
         + authorTag + tag100Create($('#author').val(), $('#author-unknown').is(':checked')) + "\n"
         + mainTitleTag + tag245Create($('#book-title').val(), $('#author').val(), $('#author-unknown').is(':checked')) + "\n"
-        + publishInfoTag + tag260Create($('#pub-locale').val(),$('#publisher').val(),$('#pub-year').val(),$('#pub-year-unknown').is(':checked')) +"\n\n";
+        + publishInfoTag + tag260Create($('#pub-locale').val(),$('#publisher').val(),$('#pub-year').val(),$('#pub-year-unknown').is(':checked')) + "\n"
+        + titleSizeTag + tag300Create($('#page-numbers').val()) + "\n\n";
         
         console.log(titleDetails);
         $("#last-entry").text("Last entry: " + $('#book-title').val() + "  |  ID: 1234597891");
@@ -116,7 +118,6 @@ function tag245Create(bookTitle, author, isPublisher) {
       authorSubField += author.charAt(index);
     }
 
-    // authorSubField += " " + lastName;
     author = authorSubField + " " + lastName;
   }
   return bookTitle + " /" + "$c" + periodCheckAdd(author);
@@ -142,6 +143,17 @@ function tag260Create(location, publisher, pubYear, isDateUnknown) {
   }
 
   return location + publisher + pubYear;
+}
+
+function tag300Create(pageNumber) {
+
+  if(pageNumber === ""){
+    pageNumber = "1 v"
+  } else {
+    pageNumber += " p";
+  }
+
+  return periodCheckAdd(pageNumber);
 }
 
 function periodCheckAdd(inputStr){
