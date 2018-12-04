@@ -9,6 +9,8 @@ var authorTag = "=100  ";
 var mainTitleTag = "=245  10$a";
 var publishInfoTag = "=260  \\\\";
 var titleSizeTag = "=300  \\\\$a";
+var locationClassificationTag = "=852  \\\\$aSBCSICA$h";
+var tlcCLassificationTag = "=949  \\$a";
 
 var entryArr = [];
 var entryNumber = 0;
@@ -71,7 +73,7 @@ function createRecordWithoutISBN(){
         + authorTag + tag100Create($('#author').val(), $('#author-unknown').is(':checked')) + "\n"
         + mainTitleTag + tag245Create($('#book-title').val(), $('#author').val(), $('#author-unknown').is(':checked')) + "\n"
         + publishInfoTag + tag260Create($('#pub-locale').val(),$('#publisher').val(),$('#pub-year').val(),$('#pub-year-unknown').is(':checked')) + "\n"
-        + titleSizeTag + tag300Create($('#page-numbers').val()) + "\n\n";
+        + titleSizeTag + tag300Create($('#page-numbers').val()) + "\n"+ tlcCLassificationTag + $('#genre').val() + "$c" + getCallCode($('#genre').val()) + "$d" + first3CharCapital($('#author').val()) + "$g" + $('#barcode').val() + "\n\n";
         
         console.log(titleDetails);
         $("#last-entry").text("Last entry: " + $('#book-title').val() + "  |  ID: 1234597891");
@@ -156,12 +158,51 @@ function tag300Create(pageNumber) {
   return periodCheckAdd(pageNumber);
 }
 
+function tag852Create(genre, id, price, author) {
+
+}
+
+function getCallCode(genre) {
+  var callCode;
+
+  switch (genre) {
+    case "SBBIO":
+      callCode = "J B"    
+      break;
+
+    case "SBEF":
+      callCode = "EF"    
+      break;
+
+    case "SBJF":
+      callCode = "J F"    
+      break;
+
+    case "SBJNF":
+      callCode = "J"    
+      break;
+
+    case "SBPROF":
+      callCode = "PROF"    
+      break;
+
+    case "SBREF":
+      callCode = "REF"    
+      break;
+  }
+  return callCode;
+}
+
 function periodCheckAdd(inputStr){
   if(inputStr.charAt(inputStr.length-1) != '.') {
     inputStr = inputStr + '.';
   }
 
   return inputStr;
+}
+
+function first3CharCapital(author) {
+  return author.charAt(0).toUpperCase() + author.charAt(1).toUpperCase() + author.charAt(2).toUpperCase();
 }
 
 function containsComma(author){
