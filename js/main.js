@@ -73,7 +73,7 @@ function createRecordWithoutISBN(){
         + authorTag + tag100Create($('#author').val(), $('#author-unknown').is(':checked')) + "\n"
         + mainTitleTag + tag245Create($('#book-title').val(), $('#author').val(), $('#author-unknown').is(':checked')) + "\n"
         + publishInfoTag + tag260Create($('#pub-locale').val(),$('#publisher').val(),$('#pub-year').val(),$('#pub-year-unknown').is(':checked')) + "\n"
-        + titleSizeTag + tag300Create($('#page-numbers').val()) + "\n"+ tlcCLassificationTag + $('#genre').val() + "$c" + getCallCode($('#genre').val()) + "$d" + first3CharCapital($('#author').val()) + "$g" + $('#barcode').val() + "\n\n";
+        + titleSizeTag + tag300Create($('#page-numbers').val()) + "\n"+ tag852Create($('#genre').val(), $('#barcode').val(), $('#author').val()) + "\n\n";
         
         console.log(titleDetails);
         $("#last-entry").text("Last entry: " + $('#book-title').val() + "  |  ID: 1234597891");
@@ -87,7 +87,7 @@ function createRecordWithISBN(){
 function tag008Create(pubYear, lang) {
   var date = marcDate("tag008MarcCreate");
   
-  return date + 's' + pubYear + "\\\\\\\\" + "xxu" + "|||||||||||||||||" + lang + "\\\\";
+  return date + 's' + pubYear + "\\\\\\\\" + "xxu" + "\\\\\\\\\\\\\\" + lang + "\\\\";
 }
 
 function tag100Create(author, isPublisher) {
@@ -158,8 +158,15 @@ function tag300Create(pageNumber) {
   return periodCheckAdd(pageNumber);
 }
 
-function tag852Create(genre, id, price, author) {
+function tag852Create(genre, id, author) {
+  //=852  \\$aSBCSICA$hEF HEN$p10000000002299$9{dollar}6.99
+  var tagString = "=852  \\\\$aSBCSICA$h";
+  var holdingCode = getCallCode(genre);
+  var threeCharAuthor = first3CharCapital(author);
+  tagString += holdingCode + ' ' + threeCharAuthor + "$p"
+  + id;
 
+  return tagString;
 }
 
 function getCallCode(genre) {
