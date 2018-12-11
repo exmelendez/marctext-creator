@@ -1,6 +1,6 @@
 var ldrTag = "=LDR  00000sam\\\\2200000\\a\\4500";
 var ctrlNumberTag = "=001  ";
-var ctrlNumIdTag = "=003  DLC";
+var ctrlNumIdTag = "=003  NyBxCSIC";
 var dateTimeTranTag = "=005  ";
 var titleCreationInfoTag = "=008  ";
 var isbnTag = "=020  \\\\$a";
@@ -198,7 +198,7 @@ function tag041Create(language) {
     return firstIndicator + "\\$aspa$heng";
   } else {
     firstIndicator = '0';
-    return firstIndicator + "$a" + language;
+    return firstIndicator + "\\$a" + language;
   }
 }
 
