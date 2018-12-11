@@ -25,7 +25,7 @@ $(document).ready(function () {
       var bookLanguage = $('#language').val();
       var bookTitle = $('#book-title').val();
       var authorName = $('#author').val();
-      var bookPrice = $('#price').val();
+      var bookPrice = String($('#price').val());
       var bookBarcode = $('#barcode').val();
       var bookGenre = $('#genre').val();
 
@@ -40,8 +40,7 @@ $(document).ready(function () {
 
         alert("missing " + determineMissingRequirement(fieldRequireList) + " field.");
 
-      } else if(isbnNumber.length > 13 || publishYear.length === 1 || publishYear.length === 2 || publishYear.length === 3 || publishYear.length > 4 || isPriceFormatCorrect(bookPrice)){
-        console.log("book format bool: " + isPriceFormatCorrect(bookPrice));
+      } else if(isbnNumber.length > 13 || publishYear.length === 1 || publishYear.length === 2 || publishYear.length === 3 || publishYear.length > 4 || !isPriceFormatCorrect(bookPrice)){
         var fieldErrorList = [];
         fieldErrorList.push(isbnNumber);
         fieldErrorList.push(publishYear);
@@ -121,7 +120,6 @@ function determineMissingRequirement(inputArr){
 }
 
 function determineErrorFields(inputArr) {
-  console.log("entered determineErrorfield Func");
   var isbnNumber = inputArr[0];
   var pubYear = inputArr[1];
   var price = inputArr[2];
@@ -134,7 +132,7 @@ function determineErrorFields(inputArr) {
     return "publishing year";
   }
 
-  if(isPriceFormatCorrect(price)){
+  if(!isPriceFormatCorrect(price)){
     return "price";
   }
 }
