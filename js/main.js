@@ -326,10 +326,14 @@ function getCallCode(genre) {
 function isPriceFormatCorrect(price){
   var result = false;
 
-  for(var i = 0; i < price.length; i++){
-    if(price.charAt(i) === '.'){
-      result = true;
-      break;
+  if(price === "") {
+    result = true;
+  } else {
+    for(var i = 0; i < price.length; i++){
+      if(price.charAt(i) === '.'){
+        result = true;
+        break;
+      }
     }
   }
 
