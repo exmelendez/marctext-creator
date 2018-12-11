@@ -3,14 +3,15 @@ var ctrlNumberTag = "=001  ";
 var ctrlNumIdTag = "=003  DLC";
 var dateTimeTranTag = "=005  ";
 var titleCreationInfoTag = "=008  ";
-var isbnPriceTag = "=020  ";
-var catalogAgencyTag = "=040  \\\\$aSBCSICA$cSBCSICA";
+var isbnTag = "=020  \\\\$a";
+var catalogAgencyTag = "=040  \\\\$aNyBxCSIC$cNyBxCSIC";
+var titleLanguageInput = "=041  "
 var authorTag = "=100  ";
 var mainTitleTag = "=245  10$a";
 var publishInfoTag = "=260  \\\\";
 var titleSizeTag = "=300  \\\\$a";
 var locationClassificationTag = "=852  \\\\$aSBCSICA$h";
-var tlcCLassificationTag = "=949  \\$a";
+var tlcCLassificationTag = "=949  \\\\$a";
 
 var entryArr = [];
 var entryNumber = 0;
@@ -19,16 +20,39 @@ $(document).ready(function () {
   
     $('#new-entry').click(function(){
 
-      if($('#pub-year').val().length === 1 || $('#pub-year').val().length === 2 || $('#pub-year').val().length === 3) {
-        alert("incorrect value");
+      var publishYear = $('#pub-year').val();
+      var isbnNumber = String($('#isbn').val());
+      var bookLanguage = $('#language').val();
+      var bookTitle = $('#book-title').val();
+      var authorName = $('#author').val();
+      var bookPrice = $('#price').val();
+      var bookBarcode = $('#barcode').val();
+      var bookGenre = $('#genre').val();
 
-      } else if($('#language').val() === "" || $('#book-title').val() === "" || $('#author').val() === "" || $('#pub-year').val() === ""){
-        alert("missing required field");
+      if(bookTitle === "" || authorName === "" || bookLanguage === "" || bookGenre === "" || publishYear === "" || bookBarcode === ""){
+        var fieldRequireList = [];
+        fieldRequireList.push(bookTitle);
+        fieldRequireList.push(authorName);
+        fieldRequireList.push(bookLanguage);
+        fieldRequireList.push(bookGenre);
+        fieldRequireList.push(publishYear);
+        fieldRequireList.push(bookBarcode);
+
+        alert("missing " + determineMissingRequirement(fieldRequireList) + " field.");
+
+      } else if(isbnNumber.length > 13 || publishYear.length === 1 || publishYear.length === 2 || publishYear.length === 3 || publishYear.length > 4 || isPriceFormatCorrect(bookPrice)){
+        console.log("book format bool: " + isPriceFormatCorrect(bookPrice));
+        var fieldErrorList = [];
+        fieldErrorList.push(isbnNumber);
+        fieldErrorList.push(publishYear);
+        fieldErrorList.push(bookPrice);
+        
+        alert("incorrect value in " + determineErrorFields(fieldErrorList) + " field.");
 
       } else {
           var createType;
         
-          if($('#isbn').val() === ""){
+          if(isbnNumber === ""){
             createType = createRecordWithoutISBN();
           } else {
             createType = createRecordWithISBN();
@@ -61,6 +85,60 @@ $(document).ready(function () {
       });
 });
 
+function determineMissingRequirement(inputArr){
+  var errorIndex = -1;
+
+  for(var i = 0; i < inputArr.length; i++){
+    if(inputArr[i] === "" || inputArr[i] === null){
+      errorIndex = i;
+      break;
+    }
+  }
+
+  switch (errorIndex) {
+    case 0:
+      return "book title";
+
+    case 1:
+      return "author name";
+
+    case 2:
+      return "book language";
+
+    case 3:
+      return "book genre";
+
+    case 4:
+      return "publish year";
+
+    case 5:
+      return "book ID";
+
+    default:
+      return "unknown";
+  }
+
+}
+
+function determineErrorFields(inputArr) {
+  console.log("entered determineErrorfield Func");
+  var isbnNumber = inputArr[0];
+  var pubYear = inputArr[1];
+  var price = inputArr[2];
+
+  if(isbnNumber > 13) {
+    return "isbn";
+  }
+
+  if(pubYear.length === 1 || pubYear.length === 2 || pubYear.length === 3 || pubYear.length > 4){
+    return "publishing year";
+  }
+
+  if(isPriceFormatCorrect(price)){
+    return "price";
+  }
+}
+
 function createRecordWithoutISBN(){
   var titleCreateData = tag008Create($('#pub-year').val(), $('#language').val());
         
@@ -70,24 +148,60 @@ function createRecordWithoutISBN(){
         + dateTimeTranTag + marcDate("dateTimeTran") + "\n" 
         + titleCreationInfoTag + titleCreateData + "\n" 
         + catalogAgencyTag + "\n"
+        + titleLanguageInput + tag041Create($('#language').val()) + "\n"
         + authorTag + tag100Create($('#author').val(), $('#author-unknown').is(':checked')) + "\n"
         + mainTitleTag + tag245Create($('#book-title').val(), $('#author').val(), $('#author-unknown').is(':checked')) + "\n"
         + publishInfoTag + tag260Create($('#pub-locale').val(),$('#publisher').val(),$('#pub-year').val(),$('#pub-year-unknown').is(':checked')) + "\n"
-        + titleSizeTag + tag300Create($('#page-numbers').val()) + "\n"+ tag852Create($('#genre').val(), $('#barcode').val(), $('#author').val()) + "\n\n";
+        + titleSizeTag + tag300Create($('#page-numbers').val()) + "\n"
+        + tlcCLassificationTag + tag949Create($('#genre').val(), $('#author').val(), $('#barcode').val(), $('#price').val()) + "\n\n";
         
         console.log(titleDetails);
-        $("#last-entry").text("Last entry: " + $('#book-title').val() + "  |  ID: 1234597891");
+        $("#last-entry").text("Last entry: " + $('#book-title').val() + "  |  ID: " + $('#barcode').val());
         return titleDetails;
 }
 
 function createRecordWithISBN(){
-
+  var titleCreateData = tag008Create($('#pub-year').val(), $('#language').val());
+        
+        var titleDetails = ldrTag + "\n" 
+        + ctrlNumberTag + marcDate("ctrlNum") + "\n" 
+        + ctrlNumIdTag + "\n" 
+        + dateTimeTranTag + marcDate("dateTimeTran") + "\n" 
+        + titleCreationInfoTag + titleCreateData + "\n"
+        + isbnTag + $('#isbn').val() + "\n"
+        + catalogAgencyTag + "\n"
+        + titleLanguageInput + tag041Create($('#language').val()) + "\n"
+        + authorTag + tag100Create($('#author').val(), $('#author-unknown').is(':checked')) + "\n"
+        + mainTitleTag + tag245Create($('#book-title').val(), $('#author').val(), $('#author-unknown').is(':checked')) + "\n"
+        + publishInfoTag + tag260Create($('#pub-locale').val(),$('#publisher').val(),$('#pub-year').val(),$('#pub-year-unknown').is(':checked')) + "\n"
+        + titleSizeTag + tag300Create($('#page-numbers').val()) + "\n"
+        + tlcCLassificationTag + tag949Create($('#genre').val(), $('#author').val(), $('#barcode').val(), $('#price').val()) + "\n\n";
+        
+        console.log(titleDetails);
+        $("#last-entry").text("Last entry: " + $('#book-title').val() + "  |  ID: " + $('#barcode').val());
+        return titleDetails;
 }
 
 function tag008Create(pubYear, lang) {
   var date = marcDate("tag008MarcCreate");
+
+  if(lang === "dual") {
+    lang = "spa";
+  }
   
   return date + 's' + pubYear + "\\\\\\\\" + "xxu" + "\\\\\\\\\\\\\\" + lang + "\\\\";
+}
+
+function tag041Create(language) {
+  var firstIndicator;
+
+  if(language === "dual") {
+    firstIndicator = '1';
+    return firstIndicator + "\\$aspa$heng";
+  } else {
+    firstIndicator = '0';
+    return firstIndicator + "$a" + language;
+  }
 }
 
 function tag100Create(author, isPublisher) {
@@ -127,13 +241,13 @@ function tag245Create(bookTitle, author, isPublisher) {
 
 function tag260Create(location, publisher, pubYear, isDateUnknown) {
   if(location === ""){
-    location = "[s.l.] :"
+    location = "$a[s.l.] :"
   } else {
     location = "$a" + location + " :";
   }
 
   if(publisher === ""){
-    publisher = "[s.n.],"
+    publisher = "$b[s.n.],"
   } else {
     publisher = "$b" + publisher + ",";
   }
@@ -159,14 +273,25 @@ function tag300Create(pageNumber) {
 }
 
 function tag852Create(genre, id, author) {
-  //=852  \\$aSBCSICA$hEF HEN$p10000000002299$9{dollar}6.99
   var tagString = "=852  \\\\$aSBCSICA$h";
   var holdingCode = getCallCode(genre);
   var threeCharAuthor = first3CharCapital(author);
+
   tagString += holdingCode + ' ' + threeCharAuthor + "$p"
   + id;
 
   return tagString;
+}
+
+function tag949Create(genre, author, id, price) {
+  var holdingCode = getCallCode(genre);
+  var threeCharAuthor = first3CharCapital(author);
+
+  if(price === "") {
+    return genre + "$c" + holdingCode + "$d" + threeCharAuthor + "$g" + id;
+  } else {
+    return genre + "$c" + holdingCode + "$d" + threeCharAuthor + "$g" + id + "$p$" + price;
+  }
 }
 
 function getCallCode(genre) {
@@ -198,6 +323,19 @@ function getCallCode(genre) {
       break;
   }
   return callCode;
+}
+
+function isPriceFormatCorrect(price){
+  var result = false;
+
+  for(var i = 0; i < price.length; i++){
+    if(price.charAt(i) === '.'){
+      result = true;
+      break;
+    }
+  }
+
+  return result;
 }
 
 function periodCheckAdd(inputStr){
