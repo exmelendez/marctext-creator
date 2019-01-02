@@ -296,20 +296,93 @@ function getCallCode(genre) {
   var callCode;
 
   switch (genre) {
-    case "SBBIO":
-      callCode = "J B"    
-      break;
 
     case "SBEF":
       callCode = "EF"    
       break;
 
+    case "SBFLM":
+      callCode = "FLM"    
+      break;
+
+    case "SBJBIO":
+      callCode = "B"    
+      break;
+    
     case "SBJF":
-      callCode = "J F"    
+      callCode = "F"    
       break;
 
     case "SBJNF":
-      callCode = "J"    
+      callCode = "NF"    
+      break;
+
+    case "SBLPFLM":
+      callCode = "LFLM"    
+      break;
+
+    case "SBLPMA":
+      callCode = "LMA"    
+      break;
+
+    case "SBLPRE":
+      callCode = "LRE"    
+      break;
+
+    case "SBLPS1":
+      callCode = "LS1"    
+      break;
+
+    case "SBLPS2":
+      callCode = "LS2"    
+      break;
+
+    case "SBLPSC":
+      callCode = "LSC"    
+      break;
+
+    case "SBLPSPFLM":
+      callCode = "LSFLM"    
+      break;
+
+    case "SBLPSK":
+      callCode = "LSK"    
+      break;
+
+    case "SBLPSPMA":
+      callCode = "LSMA"    
+      break;
+
+    case "SBLPSS":
+      callCode = "LSS"    
+      break;
+
+    case "SBLPSPS1":
+      callCode = "LSS1"    
+      break;
+
+    case "SBLPSPS2":
+      callCode = "LSS2"    
+      break;
+
+    case "SBLPSPSC":
+      callCode = "LSSC"    
+      break;
+
+    case "SBLPSPSK":
+      callCode = "LSSK"    
+      break;
+
+    case "SBLPSPSS":
+      callCode = "LSSS"    
+      break;
+
+    case "SBPB":
+      callCode = "PB"    
+      break;
+
+    case "SBPO":
+      callCode = "PO"    
       break;
 
     case "SBPROF":
@@ -319,6 +392,35 @@ function getCallCode(genre) {
     case "SBREF":
       callCode = "REF"    
       break;
+
+    case "SBSPFLM":
+      callCode = "SFLM"    
+      break;
+
+    case "SBSPJNF":
+      callCode = "SNF"    
+      break;
+
+    case "SBSPEF":
+      callCode = "SEF"    
+      break;
+
+    case "SBSPBI":
+      callCode = "SB"    
+      break;
+
+    case "SBSPJF":
+      callCode = "SF"    
+      break;
+
+    case "SBSPPB":
+      callCode = "SPB"    
+      break;
+
+    case "SBSPPO":
+      callCode = "SPO"    
+      break;
+
   }
   return callCode;
 }
