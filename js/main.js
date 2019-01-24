@@ -10,7 +10,7 @@ var authorTag = "=100  ";
 var mainTitleTag = "=245  10$a";
 var publishInfoTag = "=260  \\\\";
 var titleSizeTag = "=300  \\\\$a";
-var tlcCLassificationTag = "=949  \\\\$a";
+var tlcClassificationTag = "=949  \\\\$a";
 
 var entryArr = [];
 var entryNumber = 0;
@@ -73,7 +73,7 @@ $(document).ready(function () {
                             }
                            );
         var userLink = document.createElement('a');
-        userLink.setAttribute('download',marcDate("save_date") + '_' + entryNumber + '.txt');
+        userLink.setAttribute('download',marcDate("save_date") + '_' + entryNumber + randomCharGenerate() + '.txt');
         userLink.setAttribute('href', window.URL.createObjectURL(blob));
         userLink.click();
         entryNumber = 0;
@@ -150,7 +150,7 @@ function createRecordWithoutISBN(){
         + mainTitleTag + tag245Create($('#book-title').val(), $('#author').val(), $('#author-unknown').is(':checked')) + "\n"
         + publishInfoTag + tag260Create($('#pub-locale').val(),$('#publisher').val(),$('#pub-year').val(),$('#pub-year-unknown').is(':checked')) + "\n"
         + titleSizeTag + tag300Create($('#page-numbers').val()) + "\n"
-        + tlcCLassificationTag + tag949Create($('#genre').val(), $('#author').val(), $('#barcode').val(), $('#price').val()) + "\n\n";
+        + tlcClassificationTag + tag949Create($('#genre').val(), $('#author').val(), $('#barcode').val(), $('#price').val()) + "\n\n";
         
         console.log(titleDetails);
         $("#last-entry").text("Last entry: " + $('#book-title').val() + "  |  ID: " + $('#barcode').val());
@@ -172,7 +172,7 @@ function createRecordWithISBN(){
         + mainTitleTag + tag245Create($('#book-title').val(), $('#author').val(), $('#author-unknown').is(':checked')) + "\n"
         + publishInfoTag + tag260Create($('#pub-locale').val(),$('#publisher').val(),$('#pub-year').val(),$('#pub-year-unknown').is(':checked')) + "\n"
         + titleSizeTag + tag300Create($('#page-numbers').val()) + "\n"
-        + tlcCLassificationTag + tag949Create($('#genre').val(), $('#author').val(), $('#barcode').val(), $('#price').val()) + "\n\n";
+        + tlcClassificationTag + tag949Create($('#genre').val(), $('#author').val(), $('#barcode').val(), $('#price').val()) + "\n\n";
         
         console.log(titleDetails);
         $("#last-entry").text("Last entry: " + $('#book-title').val() + "  |  ID: " + $('#barcode').val());
@@ -186,7 +186,7 @@ function tag008Create(pubYear, lang) {
     lang = "spa";
   }
   
-  return date + 's' + pubYear + "\\\\\\\\" + "xxu" + "\\\\\\\\\\\\\\" + lang + "\\\\";
+  return date + 's' + pubYear + "\\\\\\\\" + "xxu" + "||||||||||||||\\||" + lang + "\\\\";
 }
 
 function tag041Create(language) {
@@ -437,7 +437,7 @@ function periodCheckAdd(inputStr){
 
   return inputStr;
 }
-console.log(first3CharCapital("D-fr"));
+
 function first3CharCapital(author) {
   var authorChars = "";
 
@@ -533,4 +533,20 @@ function marcDate(type) {
 
       return saveDate;
   }
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+function randomCharGenerate() {
+  var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 
+  'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 
+  't', 'u', 'v', 'w', 'x', 'y', 'z',];
+
+  var firstChar = getRandomInt(alphabet.length);
+  var secondChar = getRandomInt(alphabet.length);
+  var thirdChar = getRandomInt(alphabet.length);
+
+  return alphabet[firstChar] + alphabet[secondChar] + alphabet[thirdChar];
 }
