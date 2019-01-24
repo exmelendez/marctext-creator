@@ -437,9 +437,23 @@ function periodCheckAdd(inputStr){
 
   return inputStr;
 }
-
+console.log(first3CharCapital("D-fr"));
 function first3CharCapital(author) {
-  return author.charAt(0).toUpperCase() + author.charAt(1).toUpperCase() + author.charAt(2).toUpperCase();
+  var authorChars = "";
+
+  for(var i = 0; i < author.length; i++){
+    if(authorChars.length < 3) {
+      if(author.charAt(i) === "'" || author.charAt(i) === "-"){
+        continue;
+      } else {
+        authorChars += author.charAt(i).toUpperCase();
+      }
+    } else {
+      break;
+    }
+  }
+
+  return authorChars;
 }
 
 function containsComma(author){
