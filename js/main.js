@@ -10,7 +10,6 @@ var authorTag = "=100  ";
 var mainTitleTag = "=245  10$a";
 var publishInfoTag = "=260  \\\\";
 var titleSizeTag = "=300  \\\\$a";
-var locationClassificationTag = "=852  \\\\$aSBCSICA$h";
 var tlcCLassificationTag = "=949  \\\\$a";
 
 var entryArr = [];
@@ -64,7 +63,7 @@ $(document).ready(function () {
       }
     });
 
-    $('#btnSaveNDownload2').click(function () {
+    $('#btnSaveNDownload').click(function () {
       if(entryNumber === 0) {
         alert("at least 1 entry must be entered");
       } else {
@@ -74,7 +73,7 @@ $(document).ready(function () {
                             }
                            );
         var userLink = document.createElement('a');
-        userLink.setAttribute('download', "someName" + '.txt');
+        userLink.setAttribute('download',marcDate("save_date") + '_' + entryNumber + '.txt');
         userLink.setAttribute('href', window.URL.createObjectURL(blob));
         userLink.click();
         entryNumber = 0;
@@ -270,17 +269,6 @@ function tag300Create(pageNumber) {
   return periodCheckAdd(pageNumber);
 }
 
-function tag852Create(genre, id, author) {
-  var tagString = "=852  \\\\$aSBCSICA$h";
-  var holdingCode = getCallCode(genre);
-  var threeCharAuthor = first3CharCapital(author);
-
-  tagString += holdingCode + ' ' + threeCharAuthor + "$p"
-  + id;
-
-  return tagString;
-}
-
 function tag949Create(genre, author, id, price) {
   var holdingCode = getCallCode(genre);
   var threeCharAuthor = first3CharCapital(author);
@@ -288,7 +276,7 @@ function tag949Create(genre, author, id, price) {
   if(price === "") {
     return genre + "$c" + holdingCode + "$d" + threeCharAuthor + "$g" + id;
   } else {
-    return genre + "$c" + holdingCode + "$d" + threeCharAuthor + "$g" + id + "$p$" + price;
+    return genre + "$c" + holdingCode + "$d" + threeCharAuthor + "$g" + id + "$p" + price;
   }
 }
 
@@ -302,7 +290,7 @@ function getCallCode(genre) {
       break;
 
     case "SBFLM":
-      callCode = "FLM"    
+      callCode = "FL"    
       break;
 
     case "SBJBIO":
@@ -386,7 +374,7 @@ function getCallCode(genre) {
       break;
 
     case "SBPROF":
-      callCode = "PROF"    
+      callCode = "PRO"    
       break;
 
     case "SBREF":
@@ -394,7 +382,7 @@ function getCallCode(genre) {
       break;
 
     case "SBSPFLM":
-      callCode = "SFLM"    
+      callCode = "SFL"    
       break;
 
     case "SBSPJNF":
@@ -468,7 +456,7 @@ function containsComma(author){
 function marcDate(type) {
   var now = new Date();
 
-  var month = now.getMonth();
+  var month = now.getMonth() + 1;
   var day = now.getDate();
   var fourDigYear = String(now.getFullYear());
   var hour = now.getHours();
@@ -476,6 +464,10 @@ function marcDate(type) {
   var seconds = now.getSeconds();
 
   var year = fourDigYear.charAt(2) + fourDigYear.charAt(3);
+
+  if(month < 10) {
+    month = '0'+ month;
+  }
 
   if(day < 10) {
     day = '0'+ day;
@@ -515,10 +507,16 @@ function marcDate(type) {
 
     case "tag008MarcCreate":
       var tag008 = "";
-      month+= 1;
       
       tag008 = year + month + day;
 
       return tag008;
+
+    case "save_date":
+      var saveDate = "";
+      
+      saveDate = fourDigYear + month + day;
+
+      return saveDate;
   }
 }
