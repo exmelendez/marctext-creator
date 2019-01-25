@@ -60,6 +60,7 @@ $(document).ready(function () {
         document.getElementById("marc-form").reset();
         entryNumber++;
         $("#entry-num").text("Entries: " + entryNumber);
+        document.getElementById("book-title").focus();
       }
     });
 
