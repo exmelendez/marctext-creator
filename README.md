@@ -38,3 +38,20 @@ After that in field *245 (line 9)* you notice this is where the name of the titl
 
 #### Marc Crucial Info
 Marc is a very specific form of formatting characters and information, one which can easily get in depth allowing one to log any and every detail of an item/title. Rules and explanations are managed by the library of congress and can be found at <https://www.loc.gov/marc/bibliographic/>
+
+## Why create this?
+
+### Explaining the problem
+At work I manage and run the school library where we recently experienced a server crash resulting in a total loss of data. Software had to be reinstalled, marc records had to be uploaded again, but the true setback was that we also lost all the titles that were manually put in and did not come from any sort of marc record. This was months of work now lost and once again needed. Although I was assured the server has proper backups this time around, I did not want to risk it and decided to research and dive deep into the creation of marc records.
+
+Now the program we have would allow us to create marc records from scratch, but by default it creates sixteen (16) fields and because it's a windows DOS running type program, shortcuts like tab and enter do not work as they typically would. Additionally this would contribute to wasted time as the software really only requires six (6) fields. I would have to invest time in deleting fields, ensuring the proper spaces and symbols are there and repeat the tedious process for every title/item. The library easily has over 1,500 titles that need to be entered manually; I needed to figure out how to make the process faster and simpler. This would also allow me to recruit others to assist me without having to educate them on the intricacies of marc record formatting.
+
+### The End Result
+![alt text](https://i.imgur.com/hMyiPPh.jpg)
+
+#### App Guide
+As you can see above, the app contains eleven (11) text input fields that correlate to information about a book, however please notice that there are only six (6) bold fields that are absolutely necessary.
+
+A user may enter as many book titles as they wish, once a book entry is complete they must click on the green *Submit entry* button, the form resets and a brief summary of the last title entered is displayed at the bottom; when dealing with many books at a time one can easily forgot where they left off if interrupted.
+
+Once done entering titles, the user may click on the red *Complete and Download* button which will download the text file to be converted into a marc record file.
