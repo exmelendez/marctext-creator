@@ -40,7 +40,7 @@ $(document).ready(function () {
 
       } else if(isbnNumber.length > 13 || publishYear.length === 1 || publishYear.length === 2 || publishYear.length === 3 || publishYear.length > 4 || !isPriceFormatCorrect(bookPrice)){
         var fieldErrorList = [];
-        fieldErrorList.push(isbnNumber);
+        fieldErrorList.push(isbnNumber.length);
         fieldErrorList.push(publishYear);
         fieldErrorList.push(bookPrice);
         
@@ -415,16 +415,20 @@ function getCallCode(genre) {
 
 function isPriceFormatCorrect(price){
   var result = false;
+  var decimalNumCount = 0;
 
   if(price === "") {
     result = true;
   } else {
     for(var i = 0; i < price.length; i++){
       if(price.charAt(i) === '.'){
-        result = true;
-        break;
+        decimalNumCount++;
       }
     }
+  }
+
+  if(decimalNumCount === 1) {
+    result = true;
   }
 
   return result;
