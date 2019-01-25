@@ -31,3 +31,10 @@ Officially a marc record ends in the file format *.mrc* and therefore it's conte
 The sample above displays the inner content and formatting of the actual text file created. Given the software and procedure I have implemented, this text file is needed to create a marc record. Above, you see every line begins with an equal sign and a set of numbers. Each number and/or line is called a field and represents a different set of information for the title.
 
 For instance, field number *008* above *(5th line down)* begins with a set of numbers which represent the date creation of the marc record starting with the year, followed by the month and ending with the day. After that there is an *S* which signifies a single year for the publication date and after that *(the 1991)* is the year the item/title was published. Further in this line *(or field)* you notice the characters *eng* which represent the language of the title; *eng* means "english".
+
+In field *100 (line 8)* above, this is where you notice the author's name will go. Depending how detailed the creater wants to be, you may also include the year of birth and/or death of the author. This is useful in cases where there are other individuals with the same name.
+
+After that in field *245 (line 9)* you notice this is where the name of the title/item will go. You also notice more information and symbols with a *$* which signify another type of information. Almost every field has tags or subfields that indicate a specific set of information. *($a, $b, and $d are subfields or tags)*
+
+#### Marc Crucial Info
+Marc is a very specific form of formatting characters and information, one which can easily get in depth allowing one to log any and every detail of an item/title. Rules and explanations are managed by the library of congress and can be found at <https://www.loc.gov/marc/bibliographic/>
