@@ -150,7 +150,7 @@ function createRecordWithoutISBN(){
         + mainTitleTag + tag245Create($('#book-title').val(), $('#author').val(), $('#author-unknown').is(':checked')) + "\n"
         + publishInfoTag + tag260Create($('#pub-locale').val(),$('#publisher').val(),$('#pub-year').val(),$('#pub-year-unknown').is(':checked')) + "\n"
         + titleSizeTag + tag300Create($('#page-numbers').val()) + "\n"
-        + tlcClassificationTag + tag949Create($('#genre').val(), $('#author').val(), $('#barcode').val(), $('#price').val()) + "\n\n";
+        + tlcClassificationTag + tag949Create($('#genre').val(), $('#author').val(), $('#barcode').val(), priceFormatFixer($('#price').val())) + "\n\n";
         
         console.log(titleDetails);
         $("#last-entry").text("Last entry: " + $('#book-title').val() + "  |  ID: " + $('#barcode').val());
@@ -172,7 +172,7 @@ function createRecordWithISBN(){
         + mainTitleTag + tag245Create($('#book-title').val(), $('#author').val(), $('#author-unknown').is(':checked')) + "\n"
         + publishInfoTag + tag260Create($('#pub-locale').val(),$('#publisher').val(),$('#pub-year').val(),$('#pub-year-unknown').is(':checked')) + "\n"
         + titleSizeTag + tag300Create($('#page-numbers').val()) + "\n"
-        + tlcClassificationTag + tag949Create($('#genre').val(), $('#author').val(), $('#barcode').val(), $('#price').val()) + "\n\n";
+        + tlcClassificationTag + tag949Create($('#genre').val(), $('#author').val(), $('#barcode').val(), priceFormatFixer($('#price').val())) + "\n\n";
         
         console.log(titleDetails);
         $("#last-entry").text("Last entry: " + $('#book-title').val() + "  |  ID: " + $('#barcode').val());
@@ -428,6 +428,17 @@ function isPriceFormatCorrect(price){
   }
 
   return result;
+}
+
+function priceFormatFixer(price) {
+  if(price.charAt(0) === "$"){
+    var priceStrHold = "";
+    for(var i = 1; i < price.length; i++){
+      priceStrHold += price.charAt(i);
+    }
+    price = priceStrHold;
+  }
+  return price;
 }
 
 function periodCheckAdd(inputStr){
