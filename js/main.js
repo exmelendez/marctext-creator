@@ -80,6 +80,7 @@ $(document).ready(function () {
         entryNumber = 0;
         $("#entry-num").text("Entries: " + entryNumber);
         $("#last-entry").text("");
+        entryArr.length = 0;
         }
       });
 });
