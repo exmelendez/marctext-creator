@@ -13,7 +13,6 @@ var titleSizeTag = "=300  \\\\$a";
 var tlcClassificationTag = "=949  \\\\$a";
 
 var entryArr = [];
-var entryNumber = 0;
 
 $(document).ready(function () {
   
@@ -58,14 +57,13 @@ $(document).ready(function () {
 
         entryArr.push(createType);
         document.getElementById("marc-form").reset();
-        entryNumber++;
-        $("#entry-num").text("Entries: " + entryNumber);
+        $("#entry-num").text("Entries: " + entryArr.length);
         document.getElementById("book-title").focus();
       }
     });
 
     $('#btnSaveNDownload').click(function () {
-      if(entryNumber === 0) {
+      if(entryArr.length === 0) {
         alert("at least 1 entry must be entered");
       } else {
         var blob = new Blob(entryArr, 
@@ -74,7 +72,7 @@ $(document).ready(function () {
                             }
                            );
         var userLink = document.createElement('a');
-        userLink.setAttribute('download',marcDate("save_date") + '_' + entryNumber + randomCharGenerate() + '.txt');
+        userLink.setAttribute('download',marcDate("save_date") + '_' + entryArr.length + randomCharGenerate() + '.txt');
         userLink.setAttribute('href', window.URL.createObjectURL(blob));
         userLink.click();
         entryNumber = 0;
