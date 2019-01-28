@@ -67,7 +67,9 @@ Anyone can use and/or modify the program however please keep in mind that I wrot
 
 Also, J Query is used for some sections, you may reference J query with a CDN however I choose to include the JS file locally to prevent potential network errors when working with others.
 
+#### Updates
+* 1/28/2019: Created new function consolidating the function that created book entries based on prescence of ISBN. This resulted in removal of 20 lines of duplicate code.
+
 #### Future
-* Rewrite/Consolidate Duplicate Code
 * Rewrite title entries as objects instead of variables
 * Create pop-up help guide/FAQ

@@ -47,18 +47,17 @@ $(document).ready(function () {
         alert("incorrect value in " + determineErrorFields(fieldErrorList) + " field.");
 
       } else {
-          var createType;
-        
-          if(isbnNumber === ""){
-            createType = createRecordWithoutISBN();
-          } else {
-            createType = createRecordWithISBN();
+          var isbnPresent = true;
+
+          if(isbnNumber === "") {
+            isbnPresent = false;
           }
 
-        entryArr.push(createType);
-        document.getElementById("marc-form").reset();
-        $("#entry-num").text("Entries: " + entryArr.length);
-        document.getElementById("book-title").focus();
+          var bookEntry = createBookEntry(isbnPresent);
+          entryArr.push(bookEntry);
+          document.getElementById("marc-form").reset();
+          $("#entry-num").text("Entries: " + entryArr.length);
+          document.getElementById("book-title").focus();
       }
     });
 
@@ -123,7 +122,7 @@ function determineErrorFields(inputArr) {
   var pubYear = inputArr[1];
   var price = inputArr[2];
 
-  if(isbnNumber > 13) {
+  if(isbnNumber.length > 13) {
     return "isbn";
   }
 
@@ -136,47 +135,28 @@ function determineErrorFields(inputArr) {
   }
 }
 
-function createRecordWithoutISBN(){
-  var titleCreateData = tag008Create($('#pub-year').val(), $('#language').val());
-        
-        var titleDetails = ldrTag + "\n" 
-        + ctrlNumberTag + marcDate("ctrlNum") + "\n" 
-        + ctrlNumIdTag + "\n" 
-        + dateTimeTranTag + marcDate("dateTimeTran") + "\n" 
-        + titleCreationInfoTag + titleCreateData + "\n" 
-        + catalogAgencyTag + "\n"
-        + titleLanguageInput + tag041Create($('#language').val()) + "\n"
-        + authorTag + tag100Create($('#author').val(), $('#author-unknown').is(':checked')) + "\n"
-        + mainTitleTag + tag245Create($('#book-title').val(), $('#author').val(), $('#author-unknown').is(':checked')) + "\n"
-        + publishInfoTag + tag260Create($('#pub-locale').val(),$('#publisher').val(),$('#pub-year').val(),$('#pub-year-unknown').is(':checked')) + "\n"
-        + titleSizeTag + tag300Create($('#page-numbers').val()) + "\n"
-        + tlcClassificationTag + tag949Create($('#genre').val(), $('#author').val(), $('#barcode').val(), priceFormatFixer($('#price').val())) + "\n\n";
-        
-        console.log(titleDetails);
-        $("#last-entry").text("Last entry: " + $('#book-title').val() + "  |  ID: " + $('#barcode').val());
-        return titleDetails;
-}
+function createBookEntry(isbnPresent){
+  var titleDetails = ldrTag + "\n" 
+    + ctrlNumberTag + marcDate("ctrlNum") + "\n" 
+    + ctrlNumIdTag + "\n" 
+    + dateTimeTranTag + marcDate("dateTimeTran") + "\n" 
+    + titleCreationInfoTag + tag008Create($('#pub-year').val(), $('#language').val()) + "\n";
 
-function createRecordWithISBN(){
-  var titleCreateData = tag008Create($('#pub-year').val(), $('#language').val());
-        
-        var titleDetails = ldrTag + "\n" 
-        + ctrlNumberTag + marcDate("ctrlNum") + "\n" 
-        + ctrlNumIdTag + "\n" 
-        + dateTimeTranTag + marcDate("dateTimeTran") + "\n" 
-        + titleCreationInfoTag + titleCreateData + "\n"
-        + isbnTag + $('#isbn').val() + "\n"
-        + catalogAgencyTag + "\n"
-        + titleLanguageInput + tag041Create($('#language').val()) + "\n"
-        + authorTag + tag100Create($('#author').val(), $('#author-unknown').is(':checked')) + "\n"
-        + mainTitleTag + tag245Create($('#book-title').val(), $('#author').val(), $('#author-unknown').is(':checked')) + "\n"
-        + publishInfoTag + tag260Create($('#pub-locale').val(),$('#publisher').val(),$('#pub-year').val(),$('#pub-year-unknown').is(':checked')) + "\n"
-        + titleSizeTag + tag300Create($('#page-numbers').val()) + "\n"
-        + tlcClassificationTag + tag949Create($('#genre').val(), $('#author').val(), $('#barcode').val(), priceFormatFixer($('#price').val())) + "\n\n";
-        
-        console.log(titleDetails);
-        $("#last-entry").text("Last entry: " + $('#book-title').val() + "  |  ID: " + $('#barcode').val());
-        return titleDetails;
+  if(isbnPresent){
+    titleDetails += isbnTag + $('#isbn').val() + "\n";
+  }
+
+  titleDetails += catalogAgencyTag + "\n"
+    + titleLanguageInput + tag041Create($('#language').val()) + "\n"
+    + authorTag + tag100Create($('#author').val(), $('#author-unknown').is(':checked')) + "\n"
+    + mainTitleTag + tag245Create($('#book-title').val(), $('#author').val(), $('#author-unknown').is(':checked')) + "\n"
+    + publishInfoTag + tag260Create($('#pub-locale').val(),$('#publisher').val(),$('#pub-year').val(),$('#pub-year-unknown').is(':checked')) + "\n"
+    + titleSizeTag + tag300Create($('#page-numbers').val()) + "\n"
+    + tlcClassificationTag + tag949Create($('#genre').val(), $('#author').val(), $('#barcode').val(), priceFormatFixer($('#price').val())) + "\n\n";
+
+  console.log(titleDetails);
+  $("#last-entry").text("Last entry: " + $('#book-title').val() + "  |  ID: " + $('#barcode').val());
+  return titleDetails;
 }
 
 function tag008Create(pubYear, lang) {
