@@ -68,8 +68,9 @@ Anyone can use and/or modify the program however please keep in mind that I wrot
 Also, J Query is used for some sections, you may reference J query with a CDN however I choose to include the JS file locally to prevent potential network errors when working with others.
 
 #### Updates
-* 1/28/2019: Created new function consolidating the function that created book entries based on prescence of ISBN. This resulted in removal of 20 lines of duplicate code.
+* 1/28/2019: Wrote new function, consolidating method to create book entries based on prescence of ISBN and removing 20 lines of duplicate code.
+* 1/28/2019: Restructured language selection dropdown resulting in removal of 28 lines of code which included the tag 008 & 041 creation functions.
+* 1/28/2019: Replaced book detail variables for book object, also eliminating variable creation for initial JS.
 
 #### Future
-* Rewrite title entries as objects instead of variables
 * Create pop-up help guide/FAQ

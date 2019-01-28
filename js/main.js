@@ -1,17 +1,3 @@
-var ldrTag = "=LDR  00000sam\\\\2200000\\a\\4500";
-var ctrlNumberTag = "=001  ";
-var ctrlNumIdTag = "=003  NyBxCSIC";
-var dateTimeTranTag = "=005  ";
-var titleCreationInfoTag = "=008  ";
-var isbnTag = "=020  \\\\$a";
-var catalogAgencyTag = "=040  \\\\$aNyBxCSIC$cNyBxCSIC";
-var titleLanguageInput = "=041  "
-var authorTag = "=100  ";
-var mainTitleTag = "=245  10$a";
-var publishInfoTag = "=260  \\\\";
-var titleSizeTag = "=300  \\\\$a";
-var tlcClassificationTag = "=949  \\\\$a";
-
 var entryArr = [];
 
 $(document).ready(function () {
@@ -26,6 +12,11 @@ $(document).ready(function () {
       var bookPrice = String($('#price').val());
       var bookBarcode = $('#barcode').val();
       var bookGenre = $('#genre').val();
+      var isPublisherName = $('#author-unknown').is(':checked');
+      var totalPages = $('#page-numbers').val();
+      var publishLocation = $('#pub-locale').val();
+      var publisherName = $('#publisher').val();
+      var isPubYearUnknown = $('#pub-year-unknown').is(':checked');
 
       if(bookTitle === "" || authorName === "" || bookLanguage === "" || bookGenre === "" || publishYear === "" || bookBarcode === ""){
         var fieldRequireList = [];
@@ -47,14 +38,13 @@ $(document).ready(function () {
         alert("incorrect value in " + determineErrorFields(fieldErrorList) + " field.");
 
       } else {
-          var isbnPresent = true;
+          var bookCreate = bookMarcMaker(bookTitle, authorName, isPublisherName, bookLanguage, 
+            bookGenre, totalPages, publishLocation, publisherName, publishYear,
+            isPubYearUnknown, bookBarcode, bookPrice);
+          var bookEntry = bookCreate.createBkEntry(isbnNumber);
 
-          if(isbnNumber === "") {
-            isbnPresent = false;
-          }
-
-          var bookEntry = createBookEntry(isbnPresent);
           entryArr.push(bookEntry);
+          $("#last-entry").text("Last entry: " + bookTitle + "  |  ID: " + bookBarcode);
           document.getElementById("marc-form").reset();
           $("#entry-num").text("Entries: " + entryArr.length);
           document.getElementById("book-title").focus();
@@ -65,11 +55,7 @@ $(document).ready(function () {
       if(entryArr.length === 0) {
         alert("at least 1 entry must be entered");
       } else {
-        var blob = new Blob(entryArr, 
-                            {
-                              type:"application/json;utf - 8"
-                            }
-                           );
+        var blob = new Blob(entryArr, { type:"application/json;utf - 8" });
         var userLink = document.createElement('a');
         userLink.setAttribute('download',marcDate("save_date") + '_' + entryArr.length + randomCharGenerate() + '.txt');
         userLink.setAttribute('href', window.URL.createObjectURL(blob));
@@ -132,52 +118,6 @@ function determineErrorFields(inputArr) {
 
   if(!isPriceFormatCorrect(price)){
     return "price";
-  }
-}
-
-function createBookEntry(isbnPresent){
-  var titleDetails = ldrTag + "\n" 
-    + ctrlNumberTag + marcDate("ctrlNum") + "\n" 
-    + ctrlNumIdTag + "\n" 
-    + dateTimeTranTag + marcDate("dateTimeTran") + "\n" 
-    + titleCreationInfoTag + tag008Create($('#pub-year').val(), $('#language').val()) + "\n";
-
-  if(isbnPresent){
-    titleDetails += isbnTag + $('#isbn').val() + "\n";
-  }
-
-  titleDetails += catalogAgencyTag + "\n"
-    + titleLanguageInput + tag041Create($('#language').val()) + "\n"
-    + authorTag + tag100Create($('#author').val(), $('#author-unknown').is(':checked')) + "\n"
-    + mainTitleTag + tag245Create($('#book-title').val(), $('#author').val(), $('#author-unknown').is(':checked')) + "\n"
-    + publishInfoTag + tag260Create($('#pub-locale').val(),$('#publisher').val(),$('#pub-year').val(),$('#pub-year-unknown').is(':checked')) + "\n"
-    + titleSizeTag + tag300Create($('#page-numbers').val()) + "\n"
-    + tlcClassificationTag + tag949Create($('#genre').val(), $('#author').val(), $('#barcode').val(), priceFormatFixer($('#price').val())) + "\n\n";
-
-  console.log(titleDetails);
-  $("#last-entry").text("Last entry: " + $('#book-title').val() + "  |  ID: " + $('#barcode').val());
-  return titleDetails;
-}
-
-function tag008Create(pubYear, lang) {
-  var date = marcDate("tag008MarcCreate");
-
-  if(lang === "dual") {
-    lang = "spa";
-  }
-  
-  return date + 's' + pubYear + "\\\\\\\\" + "xxu" + "||||||||||||||\\||" + lang + "\\\\";
-}
-
-function tag041Create(language) {
-  var firstIndicator;
-
-  if(language === "dual") {
-    firstIndicator = '1';
-    return firstIndicator + "\\$aspa$heng";
-  } else {
-    firstIndicator = '0';
-    return firstIndicator + "\\$a" + language;
   }
 }
 
@@ -544,4 +484,44 @@ function randomCharGenerate() {
   var thirdChar = getRandomInt(alphabet.length);
 
   return alphabet[firstChar] + alphabet[secondChar] + alphabet[thirdChar];
+}
+
+function bookMarcMaker(bookTitle, bookAuthor, isPublisher, 
+  bookLanguage, bookGenre, bookPageNum, bookPubLocation, 
+  bookPublisher, bookPublishYear, isPubYearUnkown, bookID, bookPrice){
+  return {
+    leaderTag000 : "=LDR  00000sam\\\\2200000\\a\\4500\n",
+    ctrlNumberTag001 : "=001  " + marcDate("ctrlNum") + "\n",
+    ctrlNumIdTag003 : "=003  NyBxCSIC\n",
+    dateTimeTranTag005 : "=005  " + marcDate("dateTimeTran") + "\n",
+    titleCreationInfoTag008 : "=008  " + marcDate("tag008MarcCreate") + 's' + bookPublishYear + "\\\\\\\\xxu||||||||||||||\\||" + bookLanguage + "\\\\\n",
+    isbnTag020 : "=020  \\\\$a",
+    catalogAgencyTag040 : "=040  \\\\$aNyBxCSIC$cNyBxCSIC\n",
+    authorTag100 : "=100  " + tag100Create(bookAuthor, isPublisher) + "\n",
+    mainTitleTag245 : "=245  10$a" + tag245Create(bookTitle, bookAuthor, isPublisher) + "\n",
+    publishInfoTag260 : "=260  \\\\" + tag260Create(bookPubLocation,bookPublisher,bookPublishYear, isPubYearUnkown) + "\n",
+    titleSizeTag300 : "=300  \\\\$a" + tag300Create(bookPageNum) + "\n",
+    tlcClassificationTag949 : "=949  \\\\$a" + tag949Create(bookGenre, bookAuthor, bookID, priceFormatFixer(bookPrice)) + "\n\n",
+    createBkEntry(bookISBN) {
+      let titleDetails = this.leaderTag000 
+      + this.ctrlNumberTag001
+      + this.ctrlNumIdTag003
+      + this.dateTimeTranTag005
+      + this.titleCreationInfoTag008;
+
+      if(bookISBN != ""){
+      titleDetails += this.isbnTag020 + bookISBN + "\n";
+      }
+
+      titleDetails += this.catalogAgencyTag040
+        + this.authorTag100
+        + this.mainTitleTag245
+        + this.publishInfoTag260
+        + this.titleSizeTag300
+        + this.tlcClassificationTag949;
+
+      console.log(titleDetails);
+      return titleDetails;
+    }
+  }
 }
