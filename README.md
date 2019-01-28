@@ -55,3 +55,19 @@ As you can see above, the app contains eleven (11) text input fields that correl
 A user may enter as many book titles as they wish, once a book entry is complete they must click on the green *Submit entry* button, the form resets and a brief summary of the last title entered is displayed at the bottom; when dealing with many books at a time one can easily forgot where they left off if interrupted.
 
 Once done entering titles, the user may click on the red *Complete and Download* button which will download the text file to be converted into a marc record file.
+
+##### Converting to a marc Record
+
+The web app only create a plain text file which opens from any text editor program like *Note Pad* or *Text Edit*, but this file is needed by other programs in order to convert it into an official marc record. There are a number of ways and/or programs that allow one to convert text files into marc records but my preferred method is by using one called *Marc Edit* which is a free software that can be downloaded at <https://marcedit.reeset.net/>. In Marc edit you can convert the file, name it and save it wherever you like, once the marc record file is created I take that new file and upload it into our library inventory/database system.
+
+## NOTES
+
+### Development
+Anyone can use and/or modify the program however please keep in mind that I wrote it specifically for our organization and the software used here *(TLC)* so some of the information may not apply to your library and some fields may not follow the Library of Congress marc record standards.
+
+Also, J Query is used for some sections, you may reference J query with a CDN however I choose to include the JS file locally to prevent potential network errors when working with others.
+
+#### Future
+* Rewrite/Consolidate Duplicate Code
+* Rewrite title entries as objects instead of variables
+* Create pop-up help guide/FAQ
