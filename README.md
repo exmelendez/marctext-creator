@@ -73,4 +73,9 @@ Also, J Query is used for some sections, you may reference J query with a CDN ho
 * 1/28/2019: Replaced book detail variables for book object, also eliminating variable creation for initial JS.
 
 #### Future
+* Add ability to add quantity/dynamic field for more title/ID #'s
+* Add backend function to search entries for matching ISBN's previously input to prevent duplication
+* Visual redesign w/ pop up notices
+* Add ability to enter/separate UPC barcode when it does not match ISBN
 * Create pop-up help guide/FAQ
+* Ability to view full list and remove selected entries
