@@ -70,7 +70,7 @@ Also, J Query is used for some sections, you may reference J query with a CDN ho
 #### Updates
 * 1/28/2019: Wrote new function, consolidating method to create book entries based on prescence of ISBN and removing 20 lines of duplicate code.
 * 1/28/2019: Restructured language selection dropdown resulting in removal of 28 lines of code which included the tag 008 & 041 creation functions.
-* 1/28/2019: Replaced book detail variables for book object, also eliminating variable creation for initial JS.
+* 1/28/2019: Replaced book detail variables for book object eliminating initial variables in JS.
 
 #### Future
 * Add ability to add quantity/dynamic field for more title/ID #'s
