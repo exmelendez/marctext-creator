@@ -79,3 +79,4 @@ Also, J Query is used for some sections, you may reference J query with a CDN ho
 * Add ability to enter/separate UPC barcode when it does not match ISBN
 * Create pop-up help guide/FAQ
 * Ability to view full list and remove selected entries
+* Search a spreadsheet before entry to ensure the book/title is not already in the system
