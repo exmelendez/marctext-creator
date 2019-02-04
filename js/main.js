@@ -6,6 +6,7 @@ $(document).ready(function () {
 
       var publishYear = $('#pub-year').val();
       var isbnNumber = String($('#isbn').val());
+      var upc = String($('#upc').val());
       var bookLanguage = $('#language').val();
       var bookTitle = $('#book-title').val();
       var authorName = $('#author').val();
@@ -496,13 +497,14 @@ function bookMarcMaker(bookTitle, bookAuthor, isPublisher,
     dateTimeTranTag005 : "=005  " + marcDate("dateTimeTran") + "\n",
     titleCreationInfoTag008 : "=008  " + marcDate("tag008MarcCreate") + 's' + bookPublishYear + "\\\\\\\\xxu||||||||||||||\\||" + bookLanguage + "\\\\\n",
     isbnTag020 : "=020  \\\\$a",
+    upcTag024 : "=024  1\\$a",
     catalogAgencyTag040 : "=040  \\\\$aNyBxCSIC$cNyBxCSIC\n",
     authorTag100 : "=100  " + tag100Create(bookAuthor, isPublisher) + "\n",
     mainTitleTag245 : "=245  10$a" + tag245Create(bookTitle, bookAuthor, isPublisher) + "\n",
     publishInfoTag260 : "=260  \\\\" + tag260Create(bookPubLocation,bookPublisher,bookPublishYear, isPubYearUnkown) + "\n",
     titleSizeTag300 : "=300  \\\\$a" + tag300Create(bookPageNum) + "\n",
     tlcClassificationTag949 : "=949  \\\\$a" + tag949Create(bookGenre, bookAuthor, bookID, priceFormatFixer(bookPrice)) + "\n\n",
-    createBkEntry(bookISBN) {
+    createBkEntry(bookISBN, upc) {
       let titleDetails = this.leaderTag000 
       + this.ctrlNumberTag001
       + this.ctrlNumIdTag003
@@ -510,7 +512,11 @@ function bookMarcMaker(bookTitle, bookAuthor, isPublisher,
       + this.titleCreationInfoTag008;
 
       if(bookISBN != ""){
-      titleDetails += this.isbnTag020 + bookISBN + "\n";
+        titleDetails += this.isbnTag020 + bookISBN + "\n";
+      }
+
+      if(upc != ""){
+        titleDetails += this.upcTag024 + upc + "\n";
       }
 
       titleDetails += this.catalogAgencyTag040
