@@ -71,6 +71,10 @@ Also, J Query is used for some sections, you may reference J query with a CDN ho
 * 1/28/2019: Wrote new function, consolidating method to create book entries based on prescence of ISBN and removing 20 lines of duplicate code.
 * 1/28/2019: Restructured language selection dropdown resulting in removal of 28 lines of code which included the tag 008 & 041 creation functions.
 * 1/28/2019: Replaced book detail variables for book object eliminating initial variables in JS.
+* 2/2/2019: Added ability to input a 024, UPC field.
+* 2/6/2019: Added auto capital letter of first/last name in author field.
+* 2/6/2019: Fixed error catching null value if no book genre is chosen.
+* 2/7/2019: Added if statements preventing entry submission when both ISBN and UPC field are empty.
 
 #### Future
 * Add ability to add quantity/dynamic field for more title/ID #'s

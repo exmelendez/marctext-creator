@@ -1,6 +1,15 @@
 var entryArr = [];
 
 $(document).ready(function () {
+
+  function toTitleCase(str) {
+    return str.split(/\s+/).map(s => s.charAt(0).toUpperCase() + s.substring(1).toLowerCase()).join(" ");
+  }
+  
+  $('.capital').on('keyup', function(event) {
+    var $t = $(this);
+    $t.val(toTitleCase($t.val()));
+  });
   
     $('#new-entry').click(function(){
 
@@ -19,7 +28,15 @@ $(document).ready(function () {
       var publisherName = $('#publisher').val();
       var isPubYearUnknown = $('#pub-year-unknown').is(':checked');
 
-      if(bookTitle === "" || authorName === "" || bookLanguage === "" || bookGenre === "" || publishYear === "" || bookBarcode === ""){
+      let upcIsbnMatch = false;
+
+      if(isbnNumber != "" && upc != "") {
+        if(isbnNumber === upc) {
+          upcIsbnMatch = true;
+        }
+      }
+
+      if(bookTitle === "" || authorName === "" || bookLanguage === "" || bookGenre === "" || bookGenre === null  || publishYear === "" || bookBarcode === ""){
         var fieldRequireList = [];
         fieldRequireList.push(bookTitle);
         fieldRequireList.push(authorName);
@@ -38,12 +55,16 @@ $(document).ready(function () {
         
         alert("incorrect value in " + determineErrorFields(fieldErrorList) + " field.");
 
+      } else if(upcIsbnMatch || isbnNumber === bookBarcode || upc === bookBarcode) {
+
+        alert("Duplicate number found");
+
       } else {
           var bookCreate = bookMarcMaker(bookTitle, authorName, isPublisherName, bookLanguage, 
             bookGenre, totalPages, publishLocation, publisherName, publishYear,
             isPubYearUnknown, bookBarcode, bookPrice);
-          var bookEntry = bookCreate.createBkEntry(isbnNumber);
-
+          var bookEntry = bookCreate.createBkEntry(isbnNumber, upc);
+  
           entryArr.push(bookEntry);
           $("#last-entry").text("Last entry: " + bookTitle + "  |  ID: " + bookBarcode);
           document.getElementById("marc-form").reset();
@@ -66,7 +87,13 @@ $(document).ready(function () {
         $("#last-entry").text("");
         entryArr.length = 0;
         }
-      });
+    });
+
+    $('#add-id-btn').click(function() {
+      
+      $("body > #tab > #input-form > #added-ids").append('<tr><td>Barcode/ID</td><td><input type="text" size="50"></td></tr>'); 
+    });
+
 });
 
 function determineMissingRequirement(inputArr){
@@ -505,7 +532,7 @@ function bookMarcMaker(bookTitle, bookAuthor, isPublisher,
     titleSizeTag300 : "=300  \\\\$a" + tag300Create(bookPageNum) + "\n",
     tlcClassificationTag949 : "=949  \\\\$a" + tag949Create(bookGenre, bookAuthor, bookID, priceFormatFixer(bookPrice)) + "\n\n",
     createBkEntry(bookISBN, upc) {
-      let titleDetails = this.leaderTag000 
+      let titleDetails = this.leaderTag000
       + this.ctrlNumberTag001
       + this.ctrlNumIdTag003
       + this.dateTimeTranTag005
