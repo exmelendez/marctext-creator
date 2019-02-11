@@ -58,7 +58,7 @@ Once done entering titles, the user may click on the red *Complete and Download*
 
 ##### Converting to a marc Record
 
-The web app only create a plain text file which opens from any text editor program like *Note Pad* or *Text Edit*, but this file is needed by other programs in order to convert it into an official marc record. There are a number of ways and/or programs that allow one to convert text files into marc records but my preferred method is by using one called *Marc Edit* which is a free software that can be downloaded at <https://marcedit.reeset.net/>. In Marc edit you can convert the file, name it and save it wherever you like, once the marc record file is created I take that new file and upload it into our library inventory/database system.
+The web app only creates a plain text file which opens from any text editor program like *Note Pad* or *Text Edit*, but this file is needed by other programs in order to convert it into an official marc record. There are a number of ways and/or programs that allow one to convert text files into marc records but my preferred method is by using one called *Marc Edit* which is a free software that can be downloaded at <https://marcedit.reeset.net/>. In Marc edit you can convert the file, name it and save it wherever you like, once the marc record file is created I take that new file and upload it into our library inventory/database system.
 
 ## NOTES
 
