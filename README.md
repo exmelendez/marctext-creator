@@ -75,12 +75,11 @@ Also, J Query is used for some sections, you may reference J query with a CDN ho
 * 2/6/2019: Added auto capital letter of first/last name in author field.
 * 2/6/2019: Fixed error catching null value if no book genre is chosen.
 * 2/7/2019: Added if statements preventing entry submission when both ISBN and UPC field are empty.
+* 2/11/2019: Added setup section that allows user to upload CSV that is used to check for matching ISBN's before creating an entry.
 
 #### Future
 * Add ability to add quantity/dynamic field for more title/ID #'s
 * Add backend function to search entries for matching ISBN's previously input to prevent duplication
 * Visual redesign w/ pop up notices
-* Add ability to enter/separate UPC barcode when it does not match ISBN
 * Create pop-up help guide/FAQ
 * Ability to view full list and remove selected entries
-* Search a spreadsheet before entry to ensure the book/title is not already in the system

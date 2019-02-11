@@ -1,6 +1,39 @@
-var entryArr = [];
+const input = document.querySelector('input[type="file"]');
+document.getElementById("wrapperID").onclick = function() {myFunction()};
+let csvAttached = false;
+const entryArr = [];
+const isbnArr = [];
+
+function myFunction() {
+  document.getElementById("wrapperID").style.display="none"; 
+  document.getElementById("mainContainer").style.display="block"; 
+}
 
 $(document).ready(function () {
+
+  input.addEventListener('change', function (e){
+    
+    console.log(input.files);
+    const reader = new FileReader();
+    
+    reader.onload = function () {
+        const lines = reader.result.split("\n").map(function (line) {
+            return line.split(',');
+        })
+
+        if(input.files.length > 0 && lines[0][0] === "ISBN") {
+            document.getElementById("csv-fail-icon").style.display="none";
+            document.getElementById("csv-success-icon").style.display="block";
+
+            csvAttached = true;
+
+            for(let i = 1; i < lines.length; i++){
+                isbnArr.push(lines[i][0]);
+            }
+        }
+    }
+    reader.readAsText(input.files[0]);
+  }, false);
 
   function toTitleCase(str) {
     return str.split(/\s+/).map(s => s.charAt(0).toUpperCase() + s.substring(1).toLowerCase()).join(" ");
@@ -58,6 +91,10 @@ $(document).ready(function () {
       } else if(upcIsbnMatch || isbnNumber === bookBarcode || upc === bookBarcode) {
 
         alert("Duplicate number found");
+
+      } else if(csvAttached && isIsbnOnCsv(isbnNumber)) {
+
+        alert("ISBN already on CSV");
 
       } else {
           var bookCreate = bookMarcMaker(bookTitle, authorName, isPublisherName, bookLanguage, 
@@ -557,4 +594,15 @@ function bookMarcMaker(bookTitle, bookAuthor, isPublisher,
       return titleDetails;
     }
   }
+}
+
+//Takes in ISBN number as a string then checks the ISBN Array to see if it exists
+function isIsbnOnCsv(isbn) {
+     
+  for(var i = 0; i < isbnArr.length; i++) {
+      if(isbn == isbnArr[i]) {
+          return true;
+      }
+  }
+  return false;
 }

@@ -6,13 +6,24 @@
   
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
   <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="js/main.js"></script>
 
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
 </head>
 <body>
+  <div id="wrapperID" class="wrapper">
+      <div class="file-upload">
+        <input type="file" />
+        <i class="fa fa-arrow-up"></i>
+      </div>
+      
+      <div id="startBtn" class="file-upload">
+          START
+      </div>
+  </div>
+
+    <div id="mainContainer">
     <table id="tab">
     <form id="marc-form">
       <div id="input-form">
@@ -180,6 +191,10 @@
     <div id="entry-num">Entries: 0</div>
     <div id="last-entry"></div>
   </p>
+</div>
 
+  <i id="csv-fail-icon" class="fas fa-exclamation-circle csv-icon" alt="test"></i>
+  <i id="csv-success-icon" class="fas fa-file-excel csv-icon" alt="test"></i>
+  <script src="js/main.js"></script>
 </body>
 </html>
