@@ -76,10 +76,10 @@ Also, J Query is used for some sections, you may reference J query with a CDN ho
 * 2/6/2019: Fixed error catching null value if no book genre is chosen.
 * 2/7/2019: Added if statements preventing entry submission when both ISBN and UPC field are empty.
 * 2/11/2019: Added setup section that allows user to upload CSV that is used to check for matching ISBN's before creating an entry.
+* 2/11/2019: Added isbn & barcode entry duplicate check for all books entered during session.
 
 #### Future
 * Add ability to add quantity/dynamic field for more title/ID #'s
-* Add backend function to search entries for matching ISBN's previously input to prevent duplication
 * Visual redesign w/ pop up notices
 * Create pop-up help guide/FAQ
 * Ability to view full list and remove selected entries

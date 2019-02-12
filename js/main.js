@@ -3,6 +3,8 @@ document.getElementById("wrapperID").onclick = function() {myFunction()};
 let csvAttached = false;
 const entryArr = [];
 const isbnArr = [];
+const entryIsbnArr = [];
+const entryIDArr = [];
 
 function myFunction() {
   document.getElementById("wrapperID").style.display="none"; 
@@ -96,6 +98,14 @@ $(document).ready(function () {
 
         alert("ISBN already on CSV");
 
+      } else if(isIsbnEntered(isbnNumber)) {
+
+        alert("ISBN already in entry");
+
+      } else if(isIdEntered(bookBarcode)) {
+
+        alert("ID already in entry");
+
       } else {
           var bookCreate = bookMarcMaker(bookTitle, authorName, isPublisherName, bookLanguage, 
             bookGenre, totalPages, publishLocation, publisherName, publishYear,
@@ -103,11 +113,13 @@ $(document).ready(function () {
           var bookEntry = bookCreate.createBkEntry(isbnNumber, upc);
   
           entryArr.push(bookEntry);
+          entryIsbnArr.push(isbnNumber);
+          entryIDArr.push(bookBarcode);
           $("#last-entry").text("Last entry: " + bookTitle + "  |  ID: " + bookBarcode);
           document.getElementById("marc-form").reset();
           $("#entry-num").text("Entries: " + entryArr.length);
           document.getElementById("book-title").focus();
-      }
+        }
     });
 
     $('#btnSaveNDownload').click(function () {
@@ -601,6 +613,28 @@ function isIsbnOnCsv(isbn) {
      
   for(var i = 0; i < isbnArr.length; i++) {
       if(isbn == isbnArr[i]) {
+          return true;
+      }
+  }
+  return false;
+}
+
+//Takes in ISBN number as a string then checks the Entry ISBN Array to see if it is a dup
+function isIsbnEntered(isbn) {
+     
+  for(var i = 0; i < entryIsbnArr.length; i++) {
+      if(isbn == entryIsbnArr[i]) {
+          return true;
+      }
+  }
+  return false;
+}
+
+//Takes in barcode number as a string then checks the Entry ID Array to see if it is a dup
+function isIdEntered(bookId) {
+     
+  for(var i = 0; i < entryIDArr.length; i++) {
+      if(bookId == entryIDArr[i]) {
           return true;
       }
   }
