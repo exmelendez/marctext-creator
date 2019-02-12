@@ -1,9 +1,8 @@
 button {
-    margin-top: 20px;
     font-size: 15px;
     border-radius: 6px;
     font-weight: bold;
-    line-height: 25px;
+    line-height: 22px;
   }
   
   #new-entry {
@@ -11,15 +10,25 @@ button {
     color: white; 
     
   }
-  
+
   #btnSaveNDownload {
     background-color:red;
-    color: black;
+    color: white;
   }
 
-  #btnSaveNDownload2 {
-    background-color:red;
-    color: black;
+  #clr-form-btn {
+    color: red;
+    font-size: 1.2em;
+    padding-top: auto;
+    margin-left: 8px;
+  }
+
+  .btns {
+    cursor: pointer;
+  }
+
+  #btn-container {
+    margin-top: 10px;
   }
 
   .required {

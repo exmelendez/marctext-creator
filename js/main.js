@@ -143,6 +143,11 @@ $(document).ready(function () {
       $("body > #tab > #input-form > #added-ids").append('<tr><td>Barcode/ID</td><td><input type="text" size="50"></td></tr>'); 
     });
 
+    $('#clr-form-btn').click(function() {
+      document.getElementById("marc-form").reset();
+      document.getElementById("book-title").focus();
+    });
+
 });
 
 function determineMissingRequirement(inputArr){

@@ -167,7 +167,7 @@
           <tr>
             <td class="required">Barcode/ID</td>
             <td><input id="barcode" type="text" size="50"></td>
-            <td><i id="add-id-btn" class="fas fa-plus-circle add-icon"></i></td>
+            <!-- <td><i id="add-id-btn" class="fas fa-plus-circle add-icon"></i></td> -->
           </tr>
         </div>
 
@@ -182,11 +182,12 @@
 
       </div>
     </form>
-      <tr>
-        <td><button id="new-entry">Submit entry</button></td>
-        <td><button id="btnSaveNDownload">Complete and Download</button></td>
-      </tr>
   </table>
+    <div id="btn-container">
+        <button id="new-entry" class="btns">Submit entry</button>
+        <button id="btnSaveNDownload" class="btns">Complete and Download</button>
+        <i id="clr-form-btn" class="fas fa-backspace btns"></i>
+    </div>
   <p>
     <div id="entry-num">Entries: 0</div>
     <div id="last-entry"></div>
