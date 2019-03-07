@@ -48,6 +48,7 @@ Now the program we have would allow us to create marc records from scratch, but 
 
 ### APP Preview & Explanation
 ![General APP/ Nav](https://i.imgur.com/lpoS1FQ.png)
+
 ![Icon Legend](https://imgur.com/gJHlzM5)
 
 #### App Guide
