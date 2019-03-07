@@ -56,7 +56,9 @@ As of 2/11/19, a CSV document checker was implemented not only adding functional
 
 A user may enter as many book titles as they wish, once a book entry is complete they must click on the green *Submit entry* button. Clicking the entry button performs several checks like checking the CSV for a matching ISBN, checking a session array for matching ISBN's entered during browser session and checking another session array for duplicate ID numbers. Once/if successful the form resets and a brief summary of the last title entered is displayed at the bottom.
 
-When completely done entering titles, the user clicks on the red *Complete and Download* button which will download the text file to be converted into a marc record file. If the user does not refresh or restart the page the sessions arrays will maintain the information for the entered ISBNs & ID numbers.
+![Entry Info/Confirmation](https://imgur.com/yz24D7p.png)
+
+When completely done entering titles, the user clicks on the red *Complete and Download* button which will download the text file to the computer. This file may now be converted into a marc record file using the appropiate software. Additionally, if the user does not refresh or restart the page the session arrays will hold the information for the entered ISBNs & ID numbers allowing to continue a more accurate duplication check.
 
 ##### Converting to a marc Record
 
