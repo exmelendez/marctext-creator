@@ -4,10 +4,10 @@
 A browser based app which allows a user the ability to input information about a book and generate a txt file which can be converted into a Marc Record.
 
 ## What is a Marc record?
-The U.S. national standard for dissemination of bibliographic data. Marc stands for Machine Readable Cataloging which is basically a set of digital formats for the description of items catalogued by libraries, such as books.
+The U.S. national standard for dissemination of bibliographic data. Marc stands for *Machine Readable Cataloging* which is basically a set of digital formats for the description of items catalogued by libraries, such as books.
 
 ### Marc Visibility
-Officially a marc record ends in the file format *.mrc* and therefore it's contents cannot be easily viewed and or modified. Special software like MarcEdit3, MarcMakr/MarcBrkr and more are applications that allow you to convert, view and or edit a marc record. At it's core, Marc records are primarily a set of specific character codes, spacing and formatting representative of an item or title. I compare marc to any other programming language like XML, CSS, HTML, etc.
+Officially a marc record ends in a file format of *.mrc* or *.marc* as a result it's contents cannot easily be viewed or modified. Software like MarcEdit3, MarcMakr/MarcBrkr and others allow you to convert, view or edit a marc record. At it's core, Marc records are primarily a set of specific character codes, spacing and formatting representative of an item or title. I compare marc to any other programming language like XML, CSS, HTML, etc.
 
 #### Marc Sample code/text before conversion to marc format
 ```
@@ -42,15 +42,16 @@ Marc is a very specific form of formatting characters and information, one which
 ## Why create this?
 
 ### Explaining the problem
-At work I manage and run the school library where we recently experienced a server crash resulting in a total loss of data. Software had to be reinstalled, marc records had to be uploaded again, but the true setback was that we also lost all the titles that were manually put in and did not come from any sort of marc record. This was months of work now lost and once again needed. Although I was assured the server has proper backups this time around, I did not want to risk it and decided to research and dive deep into the creation of marc records.
+I manage the school library where we recently experienced a server crash resulting in a total loss of data. The library inventory/catalog software had to be reinstalled, marc records had to be uploaded again, but the true setback was the loss of all the titles that were previously manually entered. These titles did not come with a marc record and were not tied to a vendor who could provide one. Months of work was now lost and although I was assured the server has proper backups this time around, I did not want to soley rely on this solution. It makes sense that the library have it's own backup of it's titles/marc records.
 
 Now the program we have would allow us to create marc records from scratch, but by default it creates sixteen (16) fields and because it's a windows DOS running type program, shortcuts like tab and enter do not work as they typically would. Additionally this would contribute to wasted time as the software really only requires six (6) fields. I would have to invest time in deleting fields, ensuring the proper spaces and symbols are there and repeat the tedious process for every title/item. The library easily has over 1,500 titles that need to be entered manually; I needed to figure out how to make the process faster and simpler. This would also allow me to recruit others to assist me without having to educate them on the intricacies of marc record formatting.
 
-### The End Result
-![alt text](https://i.imgur.com/hMyiPPh.jpg)
+### APP Preview & Explanation
+![General APP/ Nav](https://i.imgur.com/lpoS1FQ.png)
+![Icon Legend](https://imgur.com/gJHlzM5)
 
 #### App Guide
-As you can see above, the app contains eleven (11) text input fields that correlate to information about a book, however please notice that there are only six (6) bold fields that are absolutely necessary.
+As of 2/11/19, a CSV document checker was implemented. With this change not only does the initial UI/setup change but it allows for a CSV of current titles to be used when adding entries. This will prevent duplicate title/marc records when adding new entries. As you can see above, the app contains twelve (12) text input fields or selections that correlate to information about a book, however please notice that there are only six (6) bold fields that are absolutely necessary.
 
 A user may enter as many book titles as they wish, once a book entry is complete they must click on the green *Submit entry* button, the form resets and a brief summary of the last title entered is displayed at the bottom; when dealing with many books at a time one can easily forgot where they left off if interrupted.
 
@@ -75,7 +76,7 @@ Also, J Query is used for some sections, you may reference J query with a CDN ho
 * 2/6/2019: Added auto capital letter of first/last name in author field.
 * 2/6/2019: Fixed error catching null value if no book genre is chosen.
 * 2/7/2019: Added if statements preventing entry submission when both ISBN and UPC field are empty.
-* 2/11/2019: Added setup section that allows user to upload CSV that is used to check for matching ISBN's before creating an entry.
+* 2/11/2019: New setup section/initial UI that allows user to upload CSV used to check for matching ISBN's when inputting entries.
 * 2/11/2019: Added isbn & barcode entry duplicate check for all books entered during session.
 * 2/12/2019: Added clear button to remove all data from form.
 * 3/7/2019: Fixed error preventing more than one entry if ISBN is empty.
