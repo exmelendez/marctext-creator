@@ -617,7 +617,7 @@ function bookMarcMaker(bookTitle, bookAuthor, isPublisher,
 function isIsbnOnCsv(isbn) {
      
   for(var i = 0; i < isbnArr.length; i++) {
-      if(isbn == isbnArr[i]) {
+      if(isbn == isbnArr[i] && isbn != "") {
           return true;
       }
   }
@@ -628,7 +628,7 @@ function isIsbnOnCsv(isbn) {
 function isIsbnEntered(isbn) {
      
   for(var i = 0; i < entryIsbnArr.length; i++) {
-      if(isbn == entryIsbnArr[i]) {
+      if(isbn == entryIsbnArr[i] && isbn != "") {
           return true;
       }
   }

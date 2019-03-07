@@ -77,6 +77,8 @@ Also, J Query is used for some sections, you may reference J query with a CDN ho
 * 2/7/2019: Added if statements preventing entry submission when both ISBN and UPC field are empty.
 * 2/11/2019: Added setup section that allows user to upload CSV that is used to check for matching ISBN's before creating an entry.
 * 2/11/2019: Added isbn & barcode entry duplicate check for all books entered during session.
+* 2/12/2019: Added clear button to remove all data from form.
+* 3/7/2019: Fixed error preventing more than one entry if ISBN is empty.
 
 #### Future
 * Add ability to add quantity/dynamic field for more title/ID #'s
