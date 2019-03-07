@@ -52,11 +52,11 @@ Now the program we have would allow us to create marc records from scratch, but 
 ![Icon Legend](https://imgur.com/gJHlzM5.png)
 
 #### App Guide
-As of 2/11/19, a CSV document checker was implemented. With this change not only does the initial UI/setup change but it allows for a CSV of current titles to be used when adding entries. This will prevent duplicate title/marc records when adding new entries. As you can see above, the app contains twelve (12) text input fields or selections that correlate to information about a book, however please notice that there are only six (6) bold fields that are absolutely necessary.
+As of 2/11/19, a CSV document checker was implemented not only adding functionality but also a setup page/UI. Uploading a CSV (when the first column is titled *ISBN*) allows the app to check for any matching ISBN's to prevent duplicate marc/title creation when inputting new entry. There will always be a symbol at the bottom right corner indicating whether the CSV has been successfully uploaded. The app contains twelve (12) text input fields or selections that correlate to information about a book, however please notice that there are only six (6) bold fields that are absolutely necessary.
 
-A user may enter as many book titles as they wish, once a book entry is complete they must click on the green *Submit entry* button, the form resets and a brief summary of the last title entered is displayed at the bottom; when dealing with many books at a time one can easily forgot where they left off if interrupted.
+A user may enter as many book titles as they wish, once a book entry is complete they must click on the green *Submit entry* button. Clicking he entry button performs several checks like checking the CSV for a matching ISBN, checking a session array for matching ISBN's entered during browser session and checking another session array for duplicate ID numbers. Once/if successful the form resets and a brief summary of the last title entered is displayed at the bottom.
 
-Once done entering titles, the user may click on the red *Complete and Download* button which will download the text file to be converted into a marc record file.
+When completely done entering titles, the user clicks on the red *Complete and Download* button which will download the text file to be converted into a marc record file. If the user does not refresh or restart the page the sessions arrays will maintain the information for the entered ISBNs & ID numbers.
 
 ##### Converting to a marc Record
 
