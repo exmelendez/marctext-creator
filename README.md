@@ -7,7 +7,7 @@ A browser based app which allows a user the ability to input information about a
 The U.S. national standard for dissemination of bibliographic data. Marc stands for *Machine Readable Cataloging* which is basically a set of digital formats for the description of items catalogued by libraries, such as books.
 
 ### Marc Visibility
-Officially a marc record ends in a file format of *.mrc* or *.marc* as a result it's contents cannot easily be viewed or modified. Software like MarcEdit3, MarcMakr/MarcBrkr and others allow you to convert, view or edit a marc record. At it's core, Marc records are primarily a set of specific character codes, spacing and formatting representative of an item or title. I compare marc to any other programming language like XML, CSS, HTML, etc.
+At it's core, Marc records are primarily a set of specific character codes, spacing and formatting representative of an item, book or title. I loosely compare marc to formatting and/or visualization progamming languages like XML, CSS, HTML, etc. Marc record files may end in a *.mrc* or a *.marc* format.
 
 #### Marc Sample code/text before conversion to marc format
 ```
@@ -28,11 +28,11 @@ Officially a marc record ends in a file format of *.mrc* or *.marc* as a result 
 ```
 
 #### Sample Explanation
-The sample above displays the inner content and formatting of the actual text file created. Given the software and procedure I have implemented, this text file is needed to create a marc record. Above, you see every line begins with an equal sign and a set of numbers. Each number and/or line is called a field and represents a different set of information for the title.
+The sample above displays the content and formatting of a text file produced upon clicking *Complete and Download*. This text file is needed to create a marc record, every line begins with an equal sign and a set of numbers. Each number and/or line is called a field and represents a different set of information for the title.
 
-For instance, field number *008* above *(5th line down)* begins with a set of numbers which represent the date creation of the marc record starting with the year, followed by the month and ending with the day. After that there is an *S* which signifies a single year for the publication date and after that *(the 1991)* is the year the item/title was published. Further in this line *(or field)* you notice the characters *eng* which represent the language of the title; *eng* means "english".
+Field number *008* above *(5th line down)* begins with a set of numbers which represent the date creation of the marc record starting with the year, followed by the month and ending with the day. After that there is an *S* which signifies a single year for the publication date and after that *(the 1991)* is the year the item/title was published. Further in this line *(or field)* you notice the characters *eng* which represent the language of the title; *eng* means "english".
 
-In field *100 (line 8)* above, this is where you notice the author's name will go. Depending how detailed the creater wants to be, you may also include the year of birth and/or death of the author. This is useful in cases where there are other individuals with the same name.
+In field *100 (line 8)* above, this is where the author's name will go. Depending how detailed the creater wants to be, you may also include the year of birth and/or death of the author. This is useful in cases where there are other individuals with the same name.
 
 After that in field *245 (line 9)* you notice this is where the name of the title/item will go. You also notice more information and symbols with a *$* which signify another type of information. Almost every field has tags or subfields that indicate a specific set of information. *($a, $b, and $d are subfields or tags)*
 
@@ -42,9 +42,7 @@ Marc is a very specific form of formatting characters and information, one which
 ## Why create this?
 
 ### Explaining the problem
-I manage the school library where we recently experienced a server crash resulting in a total loss of data. The library inventory/catalog software had to be reinstalled, marc records had to be uploaded again, but the true setback was the loss of all the titles that were previously manually entered. These titles did not come with a marc record and were not tied to a vendor who could provide one. Months of work was now lost and although I was assured the server has proper backups this time around, I did not want to soley rely on this solution. It makes sense that the library have it's own backup of it's titles/marc records.
-
-Now the program we have would allow us to create marc records from scratch, but by default it creates sixteen (16) fields and because it's a windows DOS running type program, shortcuts like tab and enter do not work as they typically would. Additionally this would contribute to wasted time as the software really only requires six (6) fields. I would have to invest time in deleting fields, ensuring the proper spaces and symbols are there and repeat the tedious process for every title/item. The library easily has over 1,500 titles that need to be entered manually; I needed to figure out how to make the process faster and simpler. This would also allow me to recruit others to assist me without having to educate them on the intricacies of marc record formatting.
+I manage a school library where a server crash occured resulting in a total loss of data. The library inventory/catalog software had to be reinstalled, marc records had to be uploaded again, but the true setback was the loss of all the titles that were manually entered. These titles did not come with a marc record and were not tied to a vendor who could provide one. Months of work was now lost and although I was assured the server has proper backups, I did not want to soley rely on this assurance. As a precaution I find it necessary for the library to have have it's own marc record backups of it's titles, especially those titles that previously did not have any marc records.
 
 ### APP Preview & Explanation
 ![General APP/ Nav](https://i.imgur.com/lpoS1FQ.png)
