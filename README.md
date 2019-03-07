@@ -49,7 +49,7 @@ Now the program we have would allow us to create marc records from scratch, but 
 ### APP Preview & Explanation
 ![General APP/ Nav](https://i.imgur.com/lpoS1FQ.png)
 
-![Icon Legend](https://imgur.com/gJHlzM5)
+![Icon Legend](https://imgur.com/gJHlzM5.png)
 
 #### App Guide
 As of 2/11/19, a CSV document checker was implemented. With this change not only does the initial UI/setup change but it allows for a CSV of current titles to be used when adding entries. This will prevent duplicate title/marc records when adding new entries. As you can see above, the app contains twelve (12) text input fields or selections that correlate to information about a book, however please notice that there are only six (6) bold fields that are absolutely necessary.
