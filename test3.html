@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+
+    <div>
+        <p>Some words here</p>
+        <button id="btn1">Add</button>
+    </div>
+
+    <div id="test-div">
+        <input type="text" placeholder="already here">
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $("#btn1").click(function(){
+                $("#test-div").append('<input type="text" placeholder="A New one">');
+            });
+        });
+    </script>
+</body>
+</html>

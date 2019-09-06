@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="search-inp" style="display: none">
+        <input id="isbn-input" type="number" placeholder="enter ISBN">
+        <input id="search-submit" type="submit" value="Search">
+
+        <p id="status-msg"></p>
+    </div>
+
+    <div id="manual-inp" style="display: none">
+        
+            <div id="mainContainer">
+                    <table id="tab">
+                    <form id="marc-form">
+                      <div id="input-form">
+                       
+                        <div class="form-line">
+                          <tr>
+                            <td class="required">Book Title</td>
+                            <td><input autofocus type="text" id="book-title" size="50"></td>
+                          </tr>
+                        </div>
+                
+                        <div class="form-line">
+                          <tr>
+                            <td class="required">Author</td>
+                            <td><input type="text" id="author" class="capital" size="50" placeholder="last name first (i.e. Smith, Sam)"></td>
+                            <td><input id="author-unknown" type="checkbox">publisher name</td>
+                          </tr>
+                        </div>
+                
+                        <div class="form-line">
+                          <tr>
+                            <td></td>
+                            <td>If no author, write publisher name & check box.</td>
+                          </tr>
+                        </div>
+                
+                        <div class="form-line">
+                          <tr>
+                            <td></td>
+                            <td>Include "," & space if providing last/first name.</td>
+                          </tr>
+                        </div>
+                
+                        <div class="form-line">
+                          <tr>
+                            <td class="required">Language</td>
+                            <td>
+                                <select id="language">
+                                  <option selected disabled value="">Language</option>
+                                  <option value="eng">English</option>
+                                  <option value="spa">Spanish</option>
+                                  <option value="spa">Both</option>
+                                </select>
+                            </td>
+                          </tr>
+                        </div>
+                
+                        <div class="form-line">
+                          <tr>
+                            <td class="required">Genre/Holdings</td>
+                            <td>
+                                <select id="genre">
+                                  <option selected disabled value="">Genre</option>
+                                  <option value="SBJBIO">Biography</option>
+                                  <option value="SBEF">Easy Fiction</option>
+                                  <option value="SBFLM">Fairytale/Folklore/Legend/Myth</option>
+                                  <option value="SBJF">Fiction</option>
+                                  <option value="SBLPFLM">LP-Fairytale/Folklore/Legend/Myth</option>
+                                  <option value="SBLPMA">LP-Math</option>
+                                  <option value="SBLPRE">LP-Reference</option>
+                                  <option value="SBLPSC">LP-Science</option>
+                                  <option value="SBLPSK">LP-Shared Reading Grade K</option>
+                                  <option value="SBLPS1">LP-Shared Reading Grade 1</option>
+                                  <option value="SBLPS2">LP-Shared Reading Grade 2</option>
+                                  <option value="SBLPSS">LP-Social Studies</option>
+                                  <option value="SBLPSPFLM">LP-Spanish Fairytale/Folklore/Legend/Myth</option>
+                                  <option value="SBLPSPMA">LP-Spanish Math</option>
+                                  <option value="SBLPSPSC">LP-Spanish Science</option>
+                                  <option value="SBLPSPSK">LP-Spanish Shared Reading Grade K</option>
+                                  <option value="SBLPSPS1">LP-Spanish Shared Reading Grade 1</option>
+                                  <option value="SBLPSPS2">LP-Spanish Shared Reading Grade 2</option>
+                                  <option value="SBLPSPSS">LP-Spanish Social Studies</option>
+                                  <option value="SBJNF">Non-Fiction</option>
+                                  <option value="SBPB">Picture Book</option>
+                                  <option value="SBPO">Poetry</option>
+                                  <option value="SBPROF">Professional</option>
+                                  <option value="SBREF">Reference</option>
+                                  <option value="SBSPBI">Spanish Biography</option>
+                                  <option value="SBSPEF">Spanish Easy Fiction</option>
+                                  <option value="SBSPFLM">Spanish Fairytale/Folklore/Legend/Myth</option>
+                                  <option value="SBSPJF">Spanish Fiction</option>
+                                  <option value="SBSPJNF">Spanish Non-Fiction</option>
+                                  <option value="SBSPPB">Spanish Picture Book</option>
+                                  <option value="SBSPPO">Spanish Poetry</option>
+                                  </select>
+                            </td>
+                          </tr>
+                        </div>
+                
+                        <div class="form-line">
+                          <tr>
+                            <td>ISBN</td>
+                            <td><input id="isbn" type="text" size="50"></td>
+                          </tr>
+                        </div>
+                
+                        <div class="form-line">
+                          <tr>
+                            <td>UPC</td>
+                            <td><input id="upc" type="text" size="50"></td>
+                          </tr>
+                        </div>
+                
+                        <div class="form-line">
+                          <tr>
+                            <td>Page Number</td>
+                            <td><input id="page-numbers" type="text" size="50" placeholder="# of pages (if printed)"></td>
+                          </tr>
+                        </div>
+                
+                        <div class="form-line">
+                          <tr>
+                            <td>Publish Location</td>
+                            <td><input id="pub-locale" type="text" size="50"></td>
+                          </tr>
+                        </div>
+                
+                        <div class="form-line">
+                          <tr>
+                            <td>Publisher</td>
+                            <td><input id="publisher" type="text" size="50"></td>
+                          </tr>
+                        </div>
+                
+                        <div class="form-line">
+                          <tr>
+                            <td class="required">Publish Year</td>
+                            <td><input id="pub-year" type="text" size="50" placeholder="4 digit (i.e. 1998, 2018) Copyright year can be used"></td>
+                            <td><input id="pub-year-unknown" type="checkbox">probable date</td>
+                          </tr>
+                        </div>
+                
+                        <div class="form-line">
+                          <tr>
+                            <td></td>
+                            <td>required, if unsure type any year & check box</td>
+                          </tr>
+                        </div>
+                
+                        <div class="form-line">
+                          <tr>
+                            <td class="required">Barcode/ID</td>
+                            <td><input id="barcode" type="text" size="50"></td>
+                            <!-- <td><i id="add-id-btn" class="fas fa-plus-circle add-icon"></i></td> -->
+                          </tr>
+                        </div>
+                
+                        <div id="added-ids" class="form-line"></div>
+                
+                        <div class="form-line">
+                          <tr>
+                            <td>Price</td>
+                            <td><input id="price" type="text" size="50"></td>
+                          </tr>
+                        </div>
+                
+                      </div>
+                    </form>
+                  </table>
+                    <div id="btn-container">
+                        <button id="new-entry" class="btns">Submit entry</button>
+                        <button id="btnSaveNDownload" class="btns">Complete and Download</button>
+                        <i id="clr-form-btn" class="fas fa-backspace btns"></i>
+                    </div>
+                  <p>
+                    <div id="entry-num">Entries: 0</div>
+                    <div id="last-entry"></div>
+                  </p>
+                </div>
+
+    </div>
+
+    <script src="js/test.js"></script>
+</body>
+</html>
