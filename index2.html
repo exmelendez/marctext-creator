@@ -4,16 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>SBCS Marc Creator</title>
+
+    <link rel="stylesheet" href="css/style-u.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
 <body>
 
-    <div id="search-inp" style="display: none">
-        <input id="isbn-input" type="number" placeholder="enter ISBN">
-        <input id="search-submit" type="submit" value="Search">
+    <button type="button" class="modal-btn">Modal</button>
 
-        <p id="status-msg"></p>
+    <div class="modal-bg">
+        <div class="modal">
+            <h2>Subscribe to our Channel</h2>
+            <label for="name">Name:</label>
+            <input type="text" name="name">
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="">
+            <button>Subscribe</button>
+            <span class="modal-close">X</span>
+        </div>
     </div>
+
+    <div id="header">
+        <div class="logo">SBCS Marc Creator</div>
+        <div class="search">
+            <input id="isbn-input" type="number" class="searchTerm" placeholder="Enter ISBN # of book">
+            <button id="search-submit" type="submit" class="searchButton">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+    </div>
+
+    <div id="status-bar">
+        <span id="entry-list-stat">entries: 0</span>
+        <i class="far fa-save"></i>
+    </div>
+
+    <p id="status-msg"></p>
 
     <div id="manual-inp" style="display: none">
         
