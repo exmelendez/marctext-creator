@@ -1,7 +1,5 @@
-var ifConnected = window.navigator.onLine;
-if (ifConnected) {
-  document.getElementById('search-inp').style.display = 'block';
-} else {
+const ifConnected = window.navigator.onLine;
+if (!ifConnected) {
     document.getElementById('manual-inp').style.display = 'block';
 }
 
@@ -33,6 +31,15 @@ const searchBooksApi = input => {
             statusP.innerHTML = 'No results found.';
         } else {
             statusP.innerHTML = `Found: ${data['items'][0]['volumeInfo']['title']}`;
+
+            console.log(input);
+            console.log(data['items'][0]['volumeInfo']['title']);
+            // console.log(data['items'][0]['volumeInfo']['authors'][0]);
+            console.log(authorNameFormatter(data['items'][0]['volumeInfo']['authors'][0]));
+            console.log(data['items'][0]['volumeInfo']['pageCount']);
+            console.log(data['items'][0]['volumeInfo']['publisher']);
+            console.log(data['items'][0]['volumeInfo']['publishedDate'].slice(0, 4));
+            console.log(data['items'][0]['volumeInfo']['description']);
         }
 
     })
@@ -41,3 +48,31 @@ const searchBooksApi = input => {
         console.log('Error w/ fetch API/Function');
     });
 };
+
+const authorNameFormatter = name => {
+    let firstName = '';
+    let lastName = '';
+
+    for(let i = 0; i < name.length; i++) {
+        if(name.charAt(i) != ' '){
+            firstName += name.charAt(i);
+        } else {
+            lastName = name.slice(i+1, name.length) + ", ";
+            break;
+        }
+    }
+
+    return lastName + firstName;
+};
+
+const modalBtn = document.querySelector(".modal-btn");
+const modalBg = document.querySelector(".modal-bg");
+const modalClose = document.querySelector(".modal-close");
+
+modalBtn.addEventListener("click", () => {
+    modalBg.classList.add('bg-active');
+});
+
+modalClose.addEventListener('click', () => {
+    modalBg.classList.remove('bg-active');
+});
