@@ -11,17 +11,109 @@
 </head>
 <body>
 
-    <button type="button" class="modal-btn">Modal</button>
+    <!-- <button type="button" class="modal-btn">Modal</button> -->
 
     <div class="modal-bg">
         <div class="modal">
-            <h2>Subscribe to our Channel</h2>
+            <h2>Search Results</h2>
+            <!--  
             <label for="name">Name:</label>
             <input type="text" name="name">
 
             <label for="email">Email:</label>
             <input type="email" name="email" id="">
-            <button>Subscribe</button>
+            -->
+            <span class="modal-input-span">
+              <label for="mod-book-title" class="form-elem-marg-right">Title:</label>
+              <input id="mod-book-title" class="form-elem-marg-right" type="text" name="book-title" value="The Cat in the Hat" disabled>
+              <i id="mod-edit-bk-title" class="fas fa-edit"></i>
+            </span>
+
+            <span class="modal-input-span">
+              <label for="book-author" class="form-elem-marg-right">Author:</label>
+              <input id="book-author" class="form-elem-marg-right" type="text" name="book-author" value="Dr. Seuss" disabled>
+              <i class="fas fa-edit"></i>
+            </span>
+
+            <span class="modal-input-span">
+              <select id="language" class="select-css">
+                <option selected disabled value="">Language</option>
+                <option value="eng">English</option>
+                <option value="spa">Spanish</option>
+                <option value="spa">Both</option>
+              </select>
+            </span>
+
+            <span class="modal-input-span">
+              <select id="genre" class="select-css">
+                <option selected disabled value="">Genre</option>
+                <option value="SBJBIO">Biography</option>
+                <option value="SBEF">Easy Fiction</option>
+                <option value="SBFLM">Fairytale/Folklore/Legend/Myth</option>
+                <option value="SBJF">Fiction</option>
+                <option value="SBLPFLM">LP-Fairytale/Folklore/Legend/Myth</option>
+                <option value="SBLPMA">LP-Math</option>
+                <option value="SBLPRE">LP-Reference</option>
+                <option value="SBLPSC">LP-Science</option>
+                <option value="SBLPSK">LP-Shared Reading Grade K</option>
+                <option value="SBLPS1">LP-Shared Reading Grade 1</option>
+                <option value="SBLPS2">LP-Shared Reading Grade 2</option>
+                <option value="SBLPSS">LP-Social Studies</option>
+                <option value="SBLPSPFLM">LP-Spanish Fairytale/Folklore/Legend/Myth</option>
+                <option value="SBLPSPMA">LP-Spanish Math</option>
+                <option value="SBLPSPSC">LP-Spanish Science</option>
+                <option value="SBLPSPSK">LP-Spanish Shared Reading Grade K</option>
+                <option value="SBLPSPS1">LP-Spanish Shared Reading Grade 1</option>
+                <option value="SBLPSPS2">LP-Spanish Shared Reading Grade 2</option>
+                <option value="SBLPSPSS">LP-Spanish Social Studies</option>
+                <option value="SBJNF">Non-Fiction</option>
+                <option value="SBPB">Picture Book</option>
+                <option value="SBPO">Poetry</option>
+                <option value="SBPROF">Professional</option>
+                <option value="SBREF">Reference</option>
+                <option value="SBSPBI">Spanish Biography</option>
+                <option value="SBSPEF">Spanish Easy Fiction</option>
+                <option value="SBSPFLM">Spanish Fairytale/Folklore/Legend/Myth</option>
+                <option value="SBSPJF">Spanish Fiction</option>
+                <option value="SBSPJNF">Spanish Non-Fiction</option>
+                <option value="SBSPPB">Spanish Picture Book</option>
+                <option value="SBSPPO">Spanish Poetry</option>
+              </select>
+            </span>
+
+            <span class="modal-input-span">
+              <label for="isbn" class="form-elem-marg-right">ISBN:</label>
+              <input id="isbn" class="form-elem-marg-right" type="number" name="isbn" value="9784738476385" disabled>
+              <i class="fas fa-edit"></i>
+            </span>
+
+            <span class="modal-input-span">
+              <label for="publisher" class="form-elem-marg-right">Publisher:</label>
+              <input id="publisher" class="form-elem-marg-right" type="text" name="publisher" value="Scholastic, Inc." disabled>
+              <i class="fas fa-edit"></i>
+            </span>
+
+            <span class="modal-input-span">
+              <label for="publish-year" class="form-elem-marg-right">PubYear:</label>
+              <input id="publish-year" class="form-elem-marg-right" type="text" name="publish-year" value="1992" disabled>
+              <i class="fas fa-edit"></i>
+            </span>
+
+            <span class="modal-input-span">
+              <label for="barcode" class="form-elem-marg-right">Barcode:</label>
+              <input id="barcode" type="text" name="barcode">
+              <!-- <i class="fas fa-edit"></i> -->
+            </span>
+
+            <span class="modal-input-span">
+              <label for="price" class="form-elem-marg-right">Price:</label>
+              <input id="price" type="text" name="price">
+              <!-- <i class="fas fa-edit"></i> -->
+            </span>
+            
+            <p id="status-msg"></p>
+
+            <button>Save Entry</button>
             <span class="modal-close">X</span>
         </div>
     </div>
@@ -38,10 +130,13 @@
 
     <div id="status-bar">
         <span id="entry-list-stat">entries: 0</span>
-        <i class="far fa-save"></i>
-    </div>
 
-    <p id="status-msg"></p>
+        <div>
+          <i class="fas fa-plus"></i>
+          <i class="far fa-save"></i>
+        </div>
+        
+    </div>
 
     <div id="manual-inp" style="display: none">
         
