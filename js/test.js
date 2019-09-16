@@ -1,3 +1,6 @@
+let book = new BookEntry('manual');
+book.addBookInfo({title: 'cat in hat', author: 'dr. seuss', language : 'english', genre : "", pubYear : 2007, id  : 56473837});
+
 const ifConnected = window.navigator.onLine;
 if (!ifConnected) {
   document.getElementById("manual-inp").style.display = "block";

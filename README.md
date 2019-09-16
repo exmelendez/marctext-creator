@@ -82,6 +82,8 @@ Also, J Query is used for some sections, you may reference J query with a CDN ho
 * 2/12/2019: Added clear button to remove all data from form.
 * 3/7/2019: Fixed error preventing more than one entry if ISBN is empty.
 
+Major Update (ver 2.) - added Google API function to search/find books, site redesign. removed use of Jquery
+
 #### Future
 * Add ability to add quantity/dynamic field for more title/ID #'s
 * Visual redesign w/ pop up notices
