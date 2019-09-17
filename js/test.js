@@ -1,5 +1,14 @@
-let book = new BookEntry('manual');
-book.addBookInfo({title: 'cat in hat', author: 'dr. seuss', language : 'english', genre : "", pubYear : 2007, id  : 56473837});
+let book = new BookEntry("manual");
+book.addBookInfo({
+  title: "cat in hat",
+  author: "dr. seuss",
+  language: "english",
+  genre: "Picture Book",
+  pubYear: 2007,
+  id: 56473837
+});
+let entries = new BookEntries();
+entries.addEntry(book.getEntryData());
 
 const ifConnected = window.navigator.onLine;
 if (!ifConnected) {
