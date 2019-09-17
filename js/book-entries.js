@@ -1,16 +1,23 @@
 class BookEntries {
   entries = [];
 
-  addEntry(entry) {
-    this.entryVerify(entry)
-      ? this.entries.push(entry.data)
-      : console.log(`entry error`);
+  /* takes a book object and inserts it into the object array */
+  addEntry(book) {
+    this.entries.push(book)
   }
 
-  entryVerify(entry) {
-    return entry.propCount > 5;
+  /* removes an element from the object array based off the 
+  parameter given which is the number of the index to be removed. */
+  removeEntry(index) {
+    this.entries.splice(index, 1);
   }
 
+  /* returns the length of the object entry array */
+  get total() {
+    return this.entries.length;
+  }
+
+  /* returns object array with all elements */
   get allEntries() {
     return this.entries;
   }
