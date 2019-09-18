@@ -1,0 +1,23 @@
+{
+  "name": "marccreator",
+  "version": "1.3.0",
+  "description": "create a marc record based off of manual input or an isbn search to a Google Books API",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "jsdoc": "^3.6.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/exmelendez/marctext-creator.git"
+  },
+  "author": "E. Melendez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/exmelendez/marctext-creator/issues"
+  },
+  "homepage": "https://github.com/exmelendez/marctext-creator#readme"
+}
