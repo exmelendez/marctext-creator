@@ -24,7 +24,8 @@ class InputProcessor {
         
         return trimInput;
     }
-
+    
+    // TODO: Finish + install "todo-tree in VS Code"
      static authorNameFormatter(author) {
         let firstName = "";
         let lastName = "";
@@ -40,5 +41,4 @@ class InputProcessor {
       
         return lastName + firstName;
       }
-
 }
