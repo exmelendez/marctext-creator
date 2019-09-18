@@ -1,10 +1,31 @@
-let book1 = new EntryBook("cat in hat", "dr. seuss", "english", "Picture Book", 2007, 56473837);
-let book2 = new EntryBook("rainbow wigs", "Kathy Weis", "english", "Poetry", 1999, 12345678);
-let book3 = new EntryBook("Frijoles", "Pablito Diaz", "spanish", "Non-Fiction", 2010, 303876373);
-let entries = new BookEntries();
-entries.addEntry(book1);
-entries.addEntry(book2);
-entries.addEntry(book3);
+let book1 = new EntryBook(
+  "cat in hat",
+  "dr. seuss",
+  "english",
+  "Picture Book",
+  2007,
+  56473837
+);
+let book2 = new EntryBook(
+  "rainbow wigs",
+  "Kathy Weis",
+  "english",
+  "Poetry",
+  1999,
+  12345678
+);
+let book3 = new EntryBook(
+  "Frijoles",
+  "Pablito Diaz",
+  "spanish",
+  "Non-Fiction",
+  2010,
+  303876373
+);
+let enteredBooks = new BookEntries();
+enteredBooks.addEntry(book1);
+enteredBooks.addEntry(book2);
+enteredBooks.addEntry(book3);
 
 const ifConnected = window.navigator.onLine;
 if (!ifConnected) {
