@@ -199,13 +199,38 @@ MODAL
   cursor: pointer;
   font-weight: bold;
   font-size: 16px;
-  margin-bottom: 20px;
+  margin: 0 10px;
   text-shadow: 1px 1px 1px #000;
 }
 
 .modal button:hover {
   color: yellow;
   background-color: red;
+}
+
+.modal div {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: -20px;
+}
+
+.srch-option-btn {
+    font-size: 32px;
+    color: #41c6ad;
+    cursor: pointer;
+
+    text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+}
+
+.srch-option-btn:hover {
+    color: yellow;
 }
 
 .modal-close {

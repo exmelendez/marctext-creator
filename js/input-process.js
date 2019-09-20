@@ -25,7 +25,6 @@ class InputProcessor {
         return trimInput;
     }
     
-    // TODO: Finish + install "todo-tree in VS Code"
      static authorNameFormatter(author) {
         let firstName = "";
         let lastName = "";
@@ -42,3 +41,24 @@ class InputProcessor {
         return lastName + firstName;
       }
 }
+
+/*****************
+ * 
+ * GOOGLE API OBJECT STRUCTURE
+ * Object
+ * -totalItems(number)
+ * -items(array)
+ * --Object(books found)
+ * ---volumeInfo(array)
+ * ----title(string)
+ * ----authors(array)
+ * -----'the name of names of author(s)'
+ * ----publisher(string)
+ * ----publishedDate(string)
+ * ----pageCount(number)
+ * ----imageLinks(Object)
+ * -----smallThumbNail(string, 'link to image')
+ * -----thumbnail(string, 'link to image')
+ * 
+ * 
+ */

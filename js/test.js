@@ -1,3 +1,7 @@
+//TODO: Create HTML elements that can be dynamically created/used in manual entry and in search modal
+//TODO: Figure out where to place google API/info
+//TODO: Ensure successful creation of manual/modal inputs/forms
+
 let book1 = new EntryBook(
   "cat in hat",
   "dr. seuss",
