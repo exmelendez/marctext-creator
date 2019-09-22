@@ -1,6 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 @import url(https://fonts.googleapis.com/css?family=BenchNine:700);
 @import url(https://fonts.googleapis.com/css?family=Barlow&display=swap);
+@import url("https://fonts.googleapis.com/css?family=Nunito:300,400&display=swap");
 
 html,
 body {
@@ -11,6 +12,14 @@ body {
 body {
   background: #f2f2f2;
   font-family: "Open Sans", sans-serif;
+
+  flex-direction: column;
+}
+
+.full-center-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #header {
@@ -39,11 +48,13 @@ body {
   width: 20%;
   position: relative;
   display: flex;
+  align-items: center;
   margin-right: 20px;
 }
 
 .searchTerm {
   width: 100%;
+  /* height: 90px; */
   border: 3px solid #00b4cc;
   border-right: none;
   padding: 5px;
@@ -115,9 +126,27 @@ body {
   color: white;
 }
 
-/*
+/* DIV FOR MANUAL ENTRY INPUT FORM */
+#manual-inp {
+  width: 95%;
+  /* height: 70vh; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.req-font {
+  color: red;
+}
+
+.semi-req-font {
+  color: rgb(181, 154, 2);
+}
+
+/*************
 MODAL
-*/
+*************/
 .modal-bg {
   position: fixed;
   width: 100%;
@@ -125,12 +154,9 @@ MODAL
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* visibility: hidden; */
-  /* opacity: 0; */
-  /* transition: opacity 0.5s; */
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s;
   /* transition: visibility 0.5s, opacity 0s; */
 }
 
@@ -144,10 +170,11 @@ MODAL
   background-color: white;
   width: 80%;
   height: 70%;
+
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  flex-direction: column;
 }
 
 .modal h2 {
@@ -156,11 +183,9 @@ MODAL
 
 .modal-input-span {
   width: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* margin: 10px 0; */
 
-  margin: 0;
+  display: flex;
 
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -172,6 +197,19 @@ MODAL
 }
 
 .modal > span > input {
+  font-size: 16px;
+  /* display: block; */
+  width: 100%;
+  height: 0.7em;
+  padding: 5px 10px;
+  border: 2px solid #2980b9;
+  color: red;
+  border-radius: 3px;
+  /* margin: 0; */
+}
+
+/* DUPLICATE OF CODE ABOVE - testing */
+.entry-form-input {
   font-size: 16px;
   display: block;
   width: 100%;
@@ -209,28 +247,21 @@ MODAL
 }
 
 .modal div {
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    margin-bottom: -20px;
+  padding: 0;
+  margin-bottom: -20px;
 }
 
 .srch-option-btn {
-    font-size: 32px;
-    color: #41c6ad;
-    cursor: pointer;
+  font-size: 32px;
+  color: #41c6ad;
+  cursor: pointer;
 
-    text-shadow:
-		-1px -1px 0 #000,
-		1px -1px 0 #000,
-		-1px 1px 0 #000,
-		1px 1px 0 #000;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
 
 .srch-option-btn:hover {
-    color: yellow;
+  color: yellow;
 }
 
 .modal-close {
@@ -272,12 +303,15 @@ MODAL
   background-position: right 0.7em top 50%, 0 0;
   background-size: 0.65em auto, 100%;
 }
+
 .select-css::-ms-expand {
   display: none;
 }
+
 .select-css:hover {
   border-color: #888;
 }
+
 .select-css:focus {
   border-color: #aaa;
   box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
@@ -285,6 +319,115 @@ MODAL
   color: #222;
   outline: none;
 }
+
 .select-css option {
   font-weight: normal;
+}
+
+/* new form */
+form {
+  font-family: "Nunito", sans-serif;
+  background: rgb(181, 176, 176);
+  margin-top: 10px;
+}
+
+label {
+  display: inline-block;
+  width: 13%;
+}
+
+fieldset input[type="text"],
+fieldset input[type="number"],
+fieldset select {
+  width: 86%;
+}
+
+fieldset input[type="text"],
+fieldset input[type="email"],
+fieldset input[type="password"],
+fieldset input[type="number"],
+fieldset select {
+  box-sizing: border-box;
+  border: 1px solid rgba(59, 153, 252, 0.7);
+  font-size: 16px;
+  height: auto;
+  outline: 0;
+  background-color: #e8eeef;
+  color: navy;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+  margin-bottom: 9px;
+}
+
+fieldset input:focus {
+  box-shadow: 0 0 5px rgb(37, 120, 143);
+  border: 1px solid rgba(37, 120, 143);
+}
+
+fieldset select {
+  height: 28px;
+}
+
+fieldset {
+  margin-bottom: 10px;
+  border: none;
+}
+
+#last-inp {
+  margin-bottom: 0;
+}
+
+label.light {
+  font-size: 13px;
+  font-weight: 300;
+}
+
+#man-entry-form-btn-cont {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+form button {
+  padding: 7px 15px 7px 15px;
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+  font-style: normal;
+  border-radius: 5px;
+  width: 25%;
+  border-width: 1px 1px 1px;
+  box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+#cancel-man-ent-btn {
+  background-color: red;
+  border: 1px solid rgb(189, 164, 18);
+}
+
+#cancel-man-ent-btn:hover {
+  color: red;
+  background-color: yellow;
+  border: 1px solid red;
+}
+
+#save-man-ent-btn {
+  background-color: navy;
+  border: 1px solid rgb(30, 30, 182);
+}
+
+#save-man-ent-btn:hover {
+  color: yellow;
+  background-color: green;
+  border: 1px solid yellow;
+}
+
+.req-field {
+  color: red;
+  text-shadow: 1px 1px 1px rgba(24, 20, 20, 0.899);
+}
+
+.semi-req-field {
+  color: yellow;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.605);
 }

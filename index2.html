@@ -1,327 +1,450 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>SBCS Marc Creator</title>
 
-    <link rel="stylesheet" href="css/style-u.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-</head>
-<body>
+    <link rel="stylesheet" href="css/style-u.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body class="full-center-flex">
+    <div class="full-center-flex modal-bg">
+      <div class="modal">
+        <h2>Search Results</h2>
 
-    <!-- <button type="button" class="modal-btn">Modal</button> -->
+        <span class="full-center-flex modal-input-span">
+          <label for="mod-book-title" class="form-elem-marg-right"
+            >Title:</label
+          >
+          <input
+            id="mod-book-title"
+            class="form-elem-marg-right"
+            type="text"
+            name="book-title"
+            value="The Cat in the Hat"
+            disabled
+          />
+          <i id="mod-edit-bk-title" class="fas fa-edit"></i>
+        </span>
 
-    <div class="modal-bg">
-        <div class="modal">
-            <h2>Search Results</h2>
-            <!--  
-            <label for="name">Name:</label>
-            <input type="text" name="name">
+        <span class="full-center-flex modal-input-span">
+          <label for="book-author" class="form-elem-marg-right">Author:</label>
+          <input
+            id="book-author"
+            class="form-elem-marg-right"
+            type="text"
+            name="book-author"
+            value="Dr. Seuss"
+            disabled
+          />
+          <i class="fas fa-edit"></i>
+        </span>
 
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="">
-            -->
-            <span class="modal-input-span">
-              <label for="mod-book-title" class="form-elem-marg-right">Title:</label>
-              <input id="mod-book-title" class="form-elem-marg-right" type="text" name="book-title" value="The Cat in the Hat" disabled>
-              <i id="mod-edit-bk-title" class="fas fa-edit"></i>
-            </span>
+        <span class="full-center-flex modal-input-span">
+          <select id="language" class="select-css">
+            <option selected disabled value="">Language</option>
+            <option value="eng">English</option>
+            <option value="spa">Spanish</option>
+            <option value="spa">Both</option>
+          </select>
+        </span>
 
-            <span class="modal-input-span">
-              <label for="book-author" class="form-elem-marg-right">Author:</label>
-              <input id="book-author" class="form-elem-marg-right" type="text" name="book-author" value="Dr. Seuss" disabled>
-              <i class="fas fa-edit"></i>
-            </span>
+        <span class="full-center-flex modal-input-span">
+          <select id="genre" class="select-css">
+            <option selected disabled value="">Genre</option>
+            <option value="SBJBIO">Biography</option>
+            <option value="SBEF">Easy Fiction</option>
+            <option value="SBFLM">Fairytale/Folklore/Legend/Myth</option>
+            <option value="SBJF">Fiction</option>
+            <option value="SBLPFLM">LP-Fairytale/Folklore/Legend/Myth</option>
+            <option value="SBLPMA">LP-Math</option>
+            <option value="SBLPRE">LP-Reference</option>
+            <option value="SBLPSC">LP-Science</option>
+            <option value="SBLPSK">LP-Shared Reading Grade K</option>
+            <option value="SBLPS1">LP-Shared Reading Grade 1</option>
+            <option value="SBLPS2">LP-Shared Reading Grade 2</option>
+            <option value="SBLPSS">LP-Social Studies</option>
+            <option value="SBLPSPFLM"
+              >LP-Spanish Fairytale/Folklore/Legend/Myth</option
+            >
+            <option value="SBLPSPMA">LP-Spanish Math</option>
+            <option value="SBLPSPSC">LP-Spanish Science</option>
+            <option value="SBLPSPSK">LP-Spanish Shared Reading Grade K</option>
+            <option value="SBLPSPS1">LP-Spanish Shared Reading Grade 1</option>
+            <option value="SBLPSPS2">LP-Spanish Shared Reading Grade 2</option>
+            <option value="SBLPSPSS">LP-Spanish Social Studies</option>
+            <option value="SBJNF">Non-Fiction</option>
+            <option value="SBPB">Picture Book</option>
+            <option value="SBPO">Poetry</option>
+            <option value="SBPROF">Professional</option>
+            <option value="SBREF">Reference</option>
+            <option value="SBSPBI">Spanish Biography</option>
+            <option value="SBSPEF">Spanish Easy Fiction</option>
+            <option value="SBSPFLM"
+              >Spanish Fairytale/Folklore/Legend/Myth</option
+            >
+            <option value="SBSPJF">Spanish Fiction</option>
+            <option value="SBSPJNF">Spanish Non-Fiction</option>
+            <option value="SBSPPB">Spanish Picture Book</option>
+            <option value="SBSPPO">Spanish Poetry</option>
+          </select>
+        </span>
 
-            <span class="modal-input-span">
-              <select id="language" class="select-css">
-                <option selected disabled value="">Language</option>
-                <option value="eng">English</option>
-                <option value="spa">Spanish</option>
-                <option value="spa">Both</option>
-              </select>
-            </span>
+        <span class="full-center-flex modal-input-span">
+          <label for="isbn" class="form-elem-marg-right">ISBN:</label>
+          <input
+            id="isbn"
+            class="form-elem-marg-right"
+            type="number"
+            name="isbn"
+            value="9784738476385"
+            disabled
+          />
+          <i class="fas fa-edit"></i>
+        </span>
 
-            <span class="modal-input-span">
-              <select id="genre" class="select-css">
-                <option selected disabled value="">Genre</option>
-                <option value="SBJBIO">Biography</option>
-                <option value="SBEF">Easy Fiction</option>
-                <option value="SBFLM">Fairytale/Folklore/Legend/Myth</option>
-                <option value="SBJF">Fiction</option>
-                <option value="SBLPFLM">LP-Fairytale/Folklore/Legend/Myth</option>
-                <option value="SBLPMA">LP-Math</option>
-                <option value="SBLPRE">LP-Reference</option>
-                <option value="SBLPSC">LP-Science</option>
-                <option value="SBLPSK">LP-Shared Reading Grade K</option>
-                <option value="SBLPS1">LP-Shared Reading Grade 1</option>
-                <option value="SBLPS2">LP-Shared Reading Grade 2</option>
-                <option value="SBLPSS">LP-Social Studies</option>
-                <option value="SBLPSPFLM">LP-Spanish Fairytale/Folklore/Legend/Myth</option>
-                <option value="SBLPSPMA">LP-Spanish Math</option>
-                <option value="SBLPSPSC">LP-Spanish Science</option>
-                <option value="SBLPSPSK">LP-Spanish Shared Reading Grade K</option>
-                <option value="SBLPSPS1">LP-Spanish Shared Reading Grade 1</option>
-                <option value="SBLPSPS2">LP-Spanish Shared Reading Grade 2</option>
-                <option value="SBLPSPSS">LP-Spanish Social Studies</option>
-                <option value="SBJNF">Non-Fiction</option>
-                <option value="SBPB">Picture Book</option>
-                <option value="SBPO">Poetry</option>
-                <option value="SBPROF">Professional</option>
-                <option value="SBREF">Reference</option>
-                <option value="SBSPBI">Spanish Biography</option>
-                <option value="SBSPEF">Spanish Easy Fiction</option>
-                <option value="SBSPFLM">Spanish Fairytale/Folklore/Legend/Myth</option>
-                <option value="SBSPJF">Spanish Fiction</option>
-                <option value="SBSPJNF">Spanish Non-Fiction</option>
-                <option value="SBSPPB">Spanish Picture Book</option>
-                <option value="SBSPPO">Spanish Poetry</option>
-              </select>
-            </span>
+        <span class="full-center-flex modal-input-span">
+          <label for="publisher" class="form-elem-marg-right">Publisher:</label>
+          <input
+            id="publisher"
+            class="form-elem-marg-right"
+            type="text"
+            name="publisher"
+            value="Scholastic, Inc."
+            disabled
+          />
+          <i class="fas fa-edit"></i>
+        </span>
 
-            <span class="modal-input-span">
-              <label for="isbn" class="form-elem-marg-right">ISBN:</label>
-              <input id="isbn" class="form-elem-marg-right" type="number" name="isbn" value="9784738476385" disabled>
-              <i class="fas fa-edit"></i>
-            </span>
+        <span class="full-center-flex modal-input-span">
+          <label for="publish-year" class="form-elem-marg-right"
+            >PubYear:</label
+          >
+          <input
+            id="publish-year"
+            class="form-elem-marg-right"
+            type="text"
+            name="publish-year"
+            value="1992"
+            disabled
+          />
+          <i class="fas fa-edit"></i>
+        </span>
 
-            <span class="modal-input-span">
-              <label for="publisher" class="form-elem-marg-right">Publisher:</label>
-              <input id="publisher" class="form-elem-marg-right" type="text" name="publisher" value="Scholastic, Inc." disabled>
-              <i class="fas fa-edit"></i>
-            </span>
+        <span class="full-center-flex modal-input-span">
+          <label for="barcode" class="form-elem-marg-right">Barcode:</label>
+          <input id="barcode" type="text" name="barcode" />
+        </span>
 
-            <span class="modal-input-span">
-              <label for="publish-year" class="form-elem-marg-right">PubYear:</label>
-              <input id="publish-year" class="form-elem-marg-right" type="text" name="publish-year" value="1992" disabled>
-              <i class="fas fa-edit"></i>
-            </span>
+        <span class="full-center-flex modal-input-span">
+          <label for="price" class="form-elem-marg-right">Price:</label>
+          <input id="price" type="text" name="price" />
+        </span>
 
-            <span class="modal-input-span">
-              <label for="barcode" class="form-elem-marg-right">Barcode:</label>
-              <input id="barcode" type="text" name="barcode">
-              <!-- <i class="fas fa-edit"></i> -->
-            </span>
+        <p id="status-msg"></p>
 
-            <span class="modal-input-span">
-              <label for="price" class="form-elem-marg-right">Price:</label>
-              <input id="price" type="text" name="price">
-              <!-- <i class="fas fa-edit"></i> -->
-            </span>
-            
-            <p id="status-msg"></p>
-
-            <div>
-                <span><i class="fas fa-caret-left srch-option-btn"></i></span>       
-                <button>Save Entry</button>
-                <span><i class="fas fa-caret-right srch-option-btn"></i></span>       
-            </div>
-
-            <p>Result 1 of 3</p>
-
-            <span class="modal-close">X</span>
+        <div class="full-center-flex">
+          <span><i class="fas fa-caret-left srch-option-btn"></i></span>
+          <button>Save Entry</button>
+          <span><i class="fas fa-caret-right srch-option-btn"></i></span>
         </div>
+
+        <p>Result 1 of 3</p>
+
+        <span class="modal-close">X</span>
+      </div>
     </div>
 
+    <!-- 
+
+      HEADER OF PAGE
+
+     -->
+
     <div id="header">
-        <div class="logo">SBCS Marc Creator</div>
-        <div class="search">
-            <input id="isbn-input" type="number" class="searchTerm" placeholder="Enter ISBN # of book">
-            <button id="search-submit" type="submit" class="searchButton">
-                <i class="fa fa-search"></i>
-            </button>
-        </div>
+      <div class="logo">SBCS Marc Creator</div>
+      <div class="search">
+        <input
+          id="isbn-input"
+          type="number"
+          class="searchTerm"
+          placeholder="Enter ISBN # of book"
+        />
+        <button id="search-submit" type="submit" class="searchButton">
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
     </div>
 
     <div id="status-bar">
-        <span id="entry-list-stat">entries: 0</span>
+      <span id="entry-list-stat">entries: 0</span>
 
-        <div>
-          <i class="fas fa-plus"></i>
-          <i class="far fa-save"></i>
+      <div>
+        <i class="fas fa-plus"></i>
+        <i class="far fa-save"></i>
+      </div>
+    </div>
+
+    <!-- 
+
+
+      MANUAL INPUT FORM HERE
+
+
+     -->
+
+    <div id="manual-inp">
+      <!--  
+
+      <span class="modal-input-span">
+        <label for="title" class="req-font form-elem-marg-right">Title:</label>
+        <input id="title" class="entry-form-input" type="text" />
+      </span>
+
+      <span class="modal-input-span">
+        <label for="author" class="semi-req-font form-elem-marg-right">Author:</label>
+        <input id="author" class="entry-form-input" type="text" />
+      </span>
+
+      <span class="full-center-flex modal-input-span">
+        <label for="language" class="req-font form-elem-marg-right">Language:</label>
+        <select id="language" class="select-css">
+          <option selected disabled value="">Language</option>
+          <option value="eng">English</option>
+          <option value="spa">Spanish</option>
+          <option value="spa">Both</option>
+        </select>
+      </span>
+
+      <span class="modal-input-span">
+        <label for="isbn-entry-inp" class="form-elem-marg-right">ISBN:</label>
+        <input id="isbn-entry-inp" class="entry-form-input" type="number" />
+      </span>
+
+      <span class="modal-input-span">
+        <label for="barcode-entry-inp" class="req-font form-elem-marg-right"
+          >Barcode:</label
+        >
+        <input id="barcode-entry-inp" class="entry-form-input" type="number" />
+      </span>
+
+      <span class="modal-input-span">
+        <label for="upc-entry-inp" class="form-elem-marg-right">UPC:</label>
+        <input id="upc-entry-inp" class="entry-form-input" type="number" />
+      </span>
+
+      <span class="modal-input-span">
+        <label for="price-entry-inp" class="form-elem-marg-right">Price:</label>
+        <input id="price-entry-inp" class="entry-form-input" type="number" />
+      </span>
+
+      <span class="modal-input-span">
+        <label for="pages-entry-inp" class="form-elem-marg-right">Pages:</label>
+        <input id="pages-entry-inp" class="entry-form-input" type="number" />
+      </span>
+
+      <span class="full-center-flex modal-input-span">
+        <label for="genre" class="req-font form-elem-marg-right">Genre:</label>
+        <select id="genre" class="select-css">
+          <option selected disabled value="">Genre</option>
+          <option value="SBJBIO">Biography</option>
+          <option value="SBEF">Easy Fiction</option>
+          <option value="SBFLM">Fairytale/Folklore/Legend/Myth</option>
+          <option value="SBJF">Fiction</option>
+          <option value="SBLPFLM">LP-Fairytale/Folklore/Legend/Myth</option>
+          <option value="SBLPMA">LP-Math</option>
+          <option value="SBLPRE">LP-Reference</option>
+          <option value="SBLPSC">LP-Science</option>
+          <option value="SBLPSK">LP-Shared Reading Grade K</option>
+          <option value="SBLPS1">LP-Shared Reading Grade 1</option>
+          <option value="SBLPS2">LP-Shared Reading Grade 2</option>
+          <option value="SBLPSS">LP-Social Studies</option>
+          <option value="SBLPSPFLM"
+            >LP-Spanish Fairytale/Folklore/Legend/Myth</option
+          >
+          <option value="SBLPSPMA">LP-Spanish Math</option>
+          <option value="SBLPSPSC">LP-Spanish Science</option>
+          <option value="SBLPSPSK">LP-Spanish Shared Reading Grade K</option>
+          <option value="SBLPSPS1">LP-Spanish Shared Reading Grade 1</option>
+          <option value="SBLPSPS2">LP-Spanish Shared Reading Grade 2</option>
+          <option value="SBLPSPSS">LP-Spanish Social Studies</option>
+          <option value="SBJNF">Non-Fiction</option>
+          <option value="SBPB">Picture Book</option>
+          <option value="SBPO">Poetry</option>
+          <option value="SBPROF">Professional</option>
+          <option value="SBREF">Reference</option>
+          <option value="SBSPBI">Spanish Biography</option>
+          <option value="SBSPEF">Spanish Easy Fiction</option>
+          <option value="SBSPFLM"
+            >Spanish Fairytale/Folklore/Legend/Myth</option
+          >
+          <option value="SBSPJF">Spanish Fiction</option>
+          <option value="SBSPJNF">Spanish Non-Fiction</option>
+          <option value="SBSPPB">Spanish Picture Book</option>
+          <option value="SBSPPO">Spanish Poetry</option>
+        </select>
+      </span>
+
+      <span class="modal-input-span">
+        <label for="pubLocale-entry-inp" class="form-elem-marg-right"
+          >PubLocale:</label
+        >
+        <input id="pubLocale-entry-inp" class="entry-form-input" type="text" />
+      </span>
+
+      <span class="modal-input-span">
+        <label for="publisher-entry-inp" class="semi-req-font form-elem-marg-right"
+          >Publisher:</label
+        >
+        <input id="publisher-entry-inp" class="entry-form-input" type="text" />
+      </span>
+
+      <span class="modal-input-span">
+        <label for="pubYr-entry-inp" class="req-font form-elem-marg-right"
+          >PubYear:</label
+        >
+        <input id="pubYr-entry-inp" class="entry-form-input" type="text" />
+        <input id="pub-year-unknown" type="checkbox" />proximate
+      </span>
+
+      <div id="btn-container">
+        <button class="btns">Cancel</button>
+        <button class="btns">Submit Entry</button>
+        <i id="clr-form-btn" class="fas fa-backspace btns"></i>
+      </div>
+      -->
+
+      <form action="">
+        <fieldset>
+          <label class="req-field" for="title-entry-inp">Title:</label>
+          <input type="text" name="title-entry-inp" value="" />
+
+          <label class="semi-req-field" for="author-entry-inp">Author:</label>
+          <input type="text" name="title-entry-inp" value="" />
+
+          <label class="req-field" for="language-entry-inp">Language:</label>
+          <select name="language-entry-inp">
+            <option selected disabled>Select Language</option>
+            <option value="eng">English</option>
+            <option value="spa">Spanish</option>
+            <option value="dual">Both</option>
+          </select>
+
+          <div>
+            <label class="" for="isbn-entry-inp">ISBN:</label>
+            <input type="number" name="isbn-entry-inp" value="" />
+          </div>
+
+          <label class="req-field" for="barcode-entry-inp">Barcode:</label>
+          <input type="number" name="barcode-entry-inp" value="" />
+
+          <label class="" for="upc-entry-inp">UPC:</label>
+          <input type="number" name="upc-entry-inp" value="" />
+
+          <label class="" for="price-entry-inp">Price:</label>
+          <input type="number" name="price-entry-inp" value="" />
+
+          <label class="" for="pages-entry-inp">Total Pages:</label>
+          <input type="number" name="pages-entry-inp" value="" />
+
+          <label class="req-field" for="genre-entry-inp">Genre:</label>
+          <select name="genre-entry-inp">
+            <option selected disabled>Select Genre</option>
+
+            <optgroup label="Traditional">
+              <option selected disabled value="">Genre</option>
+              <option value="SBJBIO">Biography</option>
+              <option value="SBEF">Easy Fiction</option>
+              <option value="SBFLM">Fairytale/Folklore/Legend/Myth</option>
+              <option value="SBJF">Fiction</option>
+
+              <option value="SBJNF">Non-Fiction</option>
+              <option value="SBPB">Picture Book</option>
+              <option value="SBPO">Poetry</option>
+              <option value="SBPROF">Professional</option>
+              <option value="SBREF">Reference</option>
+              <option value="SBSPBI">Spanish Biography</option>
+              <option value="SBSPEF">Spanish Easy Fiction</option>
+              <option value="SBSPFLM"
+                >Spanish Fairytale/Folklore/Legend/Myth</option
+              >
+              <option value="SBSPJF">Spanish Fiction</option>
+              <option value="SBSPJNF">Spanish Non-Fiction</option>
+              <option value="SBSPPB">Spanish Picture Book</option>
+              <option value="SBSPPO">Spanish Poetry</option>
+            </optgroup>
+
+            <optgroup label="Large">
+              <option value="SBLPFLM">LP-Fairytale/Folklore/Legend/Myth</option>
+              <option value="SBLPMA">LP-Math</option>
+              <option value="SBLPRE">LP-Reference</option>
+              <option value="SBLPSC">LP-Science</option>
+              <option value="SBLPSK">LP-Shared Reading Grade K</option>
+              <option value="SBLPS1">LP-Shared Reading Grade 1</option>
+              <option value="SBLPS2">LP-Shared Reading Grade 2</option>
+              <option value="SBLPSS">LP-Social Studies</option>
+              <option value="SBLPSPFLM"
+                >LP-Spanish Fairytale/Folklore/Legend/Myth</option
+              >
+              <option value="SBLPSPMA">LP-Spanish Math</option>
+              <option value="SBLPSPSC">LP-Spanish Science</option>
+              <option value="SBLPSPSK"
+                >LP-Spanish Shared Reading Grade K</option
+              >
+              <option value="SBLPSPS1"
+                >LP-Spanish Shared Reading Grade 1</option
+              >
+              <option value="SBLPSPS2"
+                >LP-Spanish Shared Reading Grade 2</option
+              >
+              <option value="SBLPSPSS">LP-Spanish Social Studies</option>
+            </optgroup>
+          </select>
+
+          <label class="" for="pubLocale-entry-inp">Published Location:</label>
+          <input type="text" name="pubLocale-entry-inp" value="" />
+
+          <label class="semi-req-field" for="publisher-entry-inp"
+            >Publisher:</label
+          >
+          <input type="text" name="publisher-entry-inp" value="" />
+
+          <label class="req-field" for="yearPub-entry-inp"
+            >Year Published:</label
+          >
+          <input
+            id="last-inp"
+            type="number"
+            name="yearPub-entry-inp"
+            value=""
+          />
+
+          <div>
+            <label for=""></label>
+            <input type="checkbox" name="yearUnknown-entry-inp" />
+            <label class="light" for="yearUnknown-entry-inp"
+              >Aproximate Year</label
+            >
+          </div>
+        </fieldset>
+
+        <div id="man-entry-form-btn-cont">
+          <button id="cancel-man-ent-btn" type="submit">Cancel</button>
+          <button id="save-man-ent-btn" type="submit">Save</button>
         </div>
-        
+      </form>
     </div>
 
-    <div id="manual-inp" style="display: none">
-        
-            <div id="mainContainer">
-                    <table id="tab">
-                    <form id="marc-form">
-                      <div id="input-form">
-                       
-                        <div class="form-line">
-                          <tr>
-                            <td class="required">Book Title</td>
-                            <td><input autofocus type="text" id="book-title" size="50"></td>
-                          </tr>
-                        </div>
-                
-                        <div class="form-line">
-                          <tr>
-                            <td class="required">Author</td>
-                            <td><input type="text" id="author" class="capital" size="50" placeholder="last name first (i.e. Smith, Sam)"></td>
-                            <td><input id="author-unknown" type="checkbox">publisher name</td>
-                          </tr>
-                        </div>
-                
-                        <div class="form-line">
-                          <tr>
-                            <td></td>
-                            <td>If no author, write publisher name & check box.</td>
-                          </tr>
-                        </div>
-                
-                        <div class="form-line">
-                          <tr>
-                            <td></td>
-                            <td>Include "," & space if providing last/first name.</td>
-                          </tr>
-                        </div>
-                
-                        <div class="form-line">
-                          <tr>
-                            <td class="required">Language</td>
-                            <td>
-                                <select id="language">
-                                  <option selected disabled value="">Language</option>
-                                  <option value="eng">English</option>
-                                  <option value="spa">Spanish</option>
-                                  <option value="spa">Both</option>
-                                </select>
-                            </td>
-                          </tr>
-                        </div>
-                
-                        <div class="form-line">
-                          <tr>
-                            <td class="required">Genre/Holdings</td>
-                            <td>
-                                <select id="genre">
-                                  <option selected disabled value="">Genre</option>
-                                  <option value="SBJBIO">Biography</option>
-                                  <option value="SBEF">Easy Fiction</option>
-                                  <option value="SBFLM">Fairytale/Folklore/Legend/Myth</option>
-                                  <option value="SBJF">Fiction</option>
-                                  <option value="SBLPFLM">LP-Fairytale/Folklore/Legend/Myth</option>
-                                  <option value="SBLPMA">LP-Math</option>
-                                  <option value="SBLPRE">LP-Reference</option>
-                                  <option value="SBLPSC">LP-Science</option>
-                                  <option value="SBLPSK">LP-Shared Reading Grade K</option>
-                                  <option value="SBLPS1">LP-Shared Reading Grade 1</option>
-                                  <option value="SBLPS2">LP-Shared Reading Grade 2</option>
-                                  <option value="SBLPSS">LP-Social Studies</option>
-                                  <option value="SBLPSPFLM">LP-Spanish Fairytale/Folklore/Legend/Myth</option>
-                                  <option value="SBLPSPMA">LP-Spanish Math</option>
-                                  <option value="SBLPSPSC">LP-Spanish Science</option>
-                                  <option value="SBLPSPSK">LP-Spanish Shared Reading Grade K</option>
-                                  <option value="SBLPSPS1">LP-Spanish Shared Reading Grade 1</option>
-                                  <option value="SBLPSPS2">LP-Spanish Shared Reading Grade 2</option>
-                                  <option value="SBLPSPSS">LP-Spanish Social Studies</option>
-                                  <option value="SBJNF">Non-Fiction</option>
-                                  <option value="SBPB">Picture Book</option>
-                                  <option value="SBPO">Poetry</option>
-                                  <option value="SBPROF">Professional</option>
-                                  <option value="SBREF">Reference</option>
-                                  <option value="SBSPBI">Spanish Biography</option>
-                                  <option value="SBSPEF">Spanish Easy Fiction</option>
-                                  <option value="SBSPFLM">Spanish Fairytale/Folklore/Legend/Myth</option>
-                                  <option value="SBSPJF">Spanish Fiction</option>
-                                  <option value="SBSPJNF">Spanish Non-Fiction</option>
-                                  <option value="SBSPPB">Spanish Picture Book</option>
-                                  <option value="SBSPPO">Spanish Poetry</option>
-                                  </select>
-                            </td>
-                          </tr>
-                        </div>
-                
-                        <div class="form-line">
-                          <tr>
-                            <td>ISBN</td>
-                            <td><input id="isbn" type="text" size="50"></td>
-                          </tr>
-                        </div>
-                
-                        <div class="form-line">
-                          <tr>
-                            <td>UPC</td>
-                            <td><input id="upc" type="text" size="50"></td>
-                          </tr>
-                        </div>
-                
-                        <div class="form-line">
-                          <tr>
-                            <td>Page Number</td>
-                            <td><input id="page-numbers" type="text" size="50" placeholder="# of pages (if printed)"></td>
-                          </tr>
-                        </div>
-                
-                        <div class="form-line">
-                          <tr>
-                            <td>Publish Location</td>
-                            <td><input id="pub-locale" type="text" size="50"></td>
-                          </tr>
-                        </div>
-                
-                        <div class="form-line">
-                          <tr>
-                            <td>Publisher</td>
-                            <td><input id="publisher" type="text" size="50"></td>
-                          </tr>
-                        </div>
-                
-                        <div class="form-line">
-                          <tr>
-                            <td class="required">Publish Year</td>
-                            <td><input id="pub-year" type="text" size="50" placeholder="4 digit (i.e. 1998, 2018) Copyright year can be used"></td>
-                            <td><input id="pub-year-unknown" type="checkbox">probable date</td>
-                          </tr>
-                        </div>
-                
-                        <div class="form-line">
-                          <tr>
-                            <td></td>
-                            <td>required, if unsure type any year & check box</td>
-                          </tr>
-                        </div>
-                
-                        <div class="form-line">
-                          <tr>
-                            <td class="required">Barcode/ID</td>
-                            <td><input id="barcode" type="text" size="50"></td>
-                            <!-- <td><i id="add-id-btn" class="fas fa-plus-circle add-icon"></i></td> -->
-                          </tr>
-                        </div>
-                
-                        <div id="added-ids" class="form-line"></div>
-                
-                        <div class="form-line">
-                          <tr>
-                            <td>Price</td>
-                            <td><input id="price" type="text" size="50"></td>
-                          </tr>
-                        </div>
-                
-                      </div>
-                    </form>
-                  </table>
-                    <div id="btn-container">
-                        <button id="new-entry" class="btns">Submit entry</button>
-                        <button id="btnSaveNDownload" class="btns">Complete and Download</button>
-                        <i id="clr-form-btn" class="fas fa-backspace btns"></i>
-                    </div>
-                  <p>
-                    <div id="entry-num">Entries: 0</div>
-                    <div id="last-entry"></div>
-                  </p>
-                </div>
-
-    </div>
     <script src="js/book-entry.js"></script>
     <script src="js/book-entries.js"></script>
     <script src="js/input-process.js"></script>
     <script src="js/test.js"></script>
-</body>
+  </body>
 </html>

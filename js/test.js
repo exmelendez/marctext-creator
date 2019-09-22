@@ -33,7 +33,7 @@ enteredBooks.addEntry(book3);
 
 const ifConnected = window.navigator.onLine;
 if (!ifConnected) {
-  document.getElementById("manual-inp").style.display = "block";
+  // document.getElementById("manual-inp").style.display = "block";
 }
 
 const searchInput = document.getElementById("isbn-input");
