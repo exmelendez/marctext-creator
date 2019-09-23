@@ -127,13 +127,13 @@ body {
 }
 
 /* DIV FOR MANUAL ENTRY INPUT FORM */
-#manual-inp {
+#book-entry-cont {
   width: 95%;
-  /* height: 70vh; */
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  visibility: hidden;
 }
 
 .req-font {
@@ -325,10 +325,17 @@ MODAL
 }
 
 /* new form */
+
 form {
   font-family: "Nunito", sans-serif;
   background: rgb(181, 176, 176);
   margin-top: 10px;
+}
+
+h1 {
+  margin: 0;
+  text-align: center;
+  padding: 10px 0 0 0;
 }
 
 label {
@@ -430,4 +437,120 @@ form button {
 .semi-req-field {
   color: yellow;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.605);
+}
+
+.section {
+  background-color: #5fcf80;
+  color: #fff;
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  font-size: 0.8em;
+  margin-right: 4px;
+  line-height: 30px;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-radius: 100%;
+}
+
+#page-picker {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form div i {
+  margin: 10px;
+  cursor: pointer;
+}
+
+form div i:hover {
+  color: navy;
+}
+
+form div:nth-child(4) span {
+  background-color: yellow;
+}
+
+form div:nth-child(4) i {
+  color: red;
+}
+
+form div:nth-child(4) i:hover {
+  color: rgb(37, 120, 143);
+}
+
+/***************
+SNACKBAR
+***************/
+
+#snackbar {
+  visibility: hidden; /* Hidden by default. Visible on click */
+  min-width: 250px; /* Set a default minimum width */
+  margin-left: -125px; /* Divide value of min-width by 2 */
+  background-color: #333; /* Black background color */
+  color: #fff; /* White text color */
+  text-align: center; /* Centered text */
+  border-radius: 2px; /* Rounded borders */
+  padding: 16px; /* Padding */
+  position: fixed; /* Sit on top of the screen */
+  z-index: 1; /* Add a z-index if needed */
+  left: 50%; /* Center the snackbar */
+  bottom: 30px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+.show {
+  visibility: visible !important; /* Show the snackbar */
+
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein 0.7s, fadeout 0.7s 5s;
+  animation: fadein 0.7s, fadeout 0.7s 5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
 }
