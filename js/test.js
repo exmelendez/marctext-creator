@@ -2,6 +2,9 @@
 //TODO: Figure out where to place google API/info
 //TODO: Ensure successful creation of manual/modal inputs/forms
 
+// const formCreator = new FormCreator();
+// formCreator.createForm();
+
 let book1 = new EntryBook(
   "cat in hat",
   "dr. seuss",
@@ -32,9 +35,32 @@ enteredBooks.addEntry(book2);
 enteredBooks.addEntry(book3);
 
 const ifConnected = window.navigator.onLine;
-if (!ifConnected) {
-  // document.getElementById("manual-inp").style.display = "block";
-}
+
+// function for SNACKBAR
+const snackbar = message => {
+  const snackDiv = document.getElementById("snackbar");
+
+  snackDiv.textContent = message;
+  snackDiv.className = "show";
+
+  setTimeout(() => {
+    snackDiv.className = snackDiv.className.replace("show", "");
+  }, 5000);
+};
+
+/* BUTTONS/LISTENERS TO HAVE MANUAL ENTRY INPUT APPEAR */
+const manEntryAddBtn = document.getElementById("add-man-ent-btn");
+const manEntryCancelBtn = document.getElementById("cancel-man-ent-btn");
+const entryContainer = document.getElementById("book-entry-cont");
+
+manEntryAddBtn.addEventListener("click", () => {
+  entryContainer.style.visibility = "visible";
+});
+
+manEntryCancelBtn.addEventListener("click", () => {
+  entryContainer.style.visibility = "hidden";
+  snackbar("entry cancelled");
+});
 
 const searchInput = document.getElementById("isbn-input");
 const searchSubmitBtn = document.getElementById("search-submit");
@@ -44,17 +70,21 @@ const modalClose = document.querySelector(".modal-close");
 const modTitleInputEdit = document.getElementById("mod-edit-bk-title");
 
 searchSubmitBtn.addEventListener("click", () => {
-  modalBg.classList.add("bg-active");
+  !ifConnected ? snackbar("not connected to internet") : searchProcess();
+});
+
+const searchProcess = () => {
   let inputValue = searchInput.value;
 
   if (inputValue) {
+    modalBg.classList.add("bg-active");
     searchBooksApi(inputValue);
   } else {
-    statusP.innerHTML = "Enter valid number in field";
+    snackbar("enter valid value");
   }
 
   searchInput.value = "";
-});
+};
 
 const searchBooksApi = input => {
   fetch("https://www.googleapis.com/books/v1/volumes?q=isbn:" + input)
