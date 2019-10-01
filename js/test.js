@@ -54,7 +54,9 @@ const manEntryCancelBtn = document.getElementById("cancel-man-ent-btn");
 const entryContainer = document.getElementById("book-entry-cont");
 
 manEntryAddBtn.addEventListener("click", () => {
-  entryContainer.style.visibility = "visible";
+    const formFormatter = new FormCreator();
+    formFormatter.manualEntryRender();
+    entryContainer.style.visibility = "visible";
 });
 
 manEntryCancelBtn.addEventListener("click", () => {
@@ -65,56 +67,24 @@ manEntryCancelBtn.addEventListener("click", () => {
 const searchInput = document.getElementById("isbn-input");
 const searchSubmitBtn = document.getElementById("search-submit");
 const statusP = document.getElementById("status-msg");
-const modalBg = document.querySelector(".modal-bg");
-const modalClose = document.querySelector(".modal-close");
-const modTitleInputEdit = document.getElementById("mod-edit-bk-title");
 
 searchSubmitBtn.addEventListener("click", () => {
   !ifConnected ? snackbar("not connected to internet") : searchProcess();
 });
 
 const searchProcess = () => {
-  let inputValue = searchInput.value;
+    let inputValue = searchInput.value;
+    // const formFormatter = new FormCreator();
+    const INPUT_PROCESS = new InputProcessor();
 
   if (inputValue) {
-    modalBg.classList.add("bg-active");
-    searchBooksApi(inputValue);
+    INPUT_PROCESS.searchBooksApi(inputValue);
+    searchInput.value = "";
+    
   } else {
     snackbar("enter valid value");
   }
 
-  searchInput.value = "";
-};
-
-const searchBooksApi = input => {
-  fetch("https://www.googleapis.com/books/v1/volumes?q=isbn:" + input)
-    .then(response => {
-      return response.json();
-    })
-    .then(data => {
-      if (data["totalItems"] < 1) {
-        statusP.innerHTML = "No results found.";
-      } else {
-        statusP.innerHTML = `Found: ${data["items"][0]["volumeInfo"]["title"]}`;
-
-        console.log(input);
-        console.log(data["items"][0]["volumeInfo"]["title"]);
-        // console.log(data['items'][0]['volumeInfo']['authors'][0]);
-        console.log(
-          authorNameFormatter(data["items"][0]["volumeInfo"]["authors"][0])
-        );
-        console.log(data["items"][0]["volumeInfo"]["pageCount"]);
-        console.log(data["items"][0]["volumeInfo"]["publisher"]);
-        console.log(
-          data["items"][0]["volumeInfo"]["publishedDate"].slice(0, 4)
-        );
-        console.log(data["items"][0]["volumeInfo"]["description"]);
-      }
-    })
-    .catch(err => {
-      // Do something for an error here
-      console.log("Error w/ fetch API/Function");
-    });
 };
 
 const authorNameFormatter = name => {
@@ -132,26 +102,3 @@ const authorNameFormatter = name => {
 
   return lastName + firstName;
 };
-
-// const modalBtn = document.querySelector(".modal-btn");
-
-/*
-modalBtn.addEventListener("click", () => {
-  modalBg.classList.add("bg-active");
-});
-*/
-
-modalClose.addEventListener("click", () => {
-  modalBg.classList.remove("bg-active");
-});
-
-modTitleInputEdit.addEventListener("click", () => {
-  const modTitleInput = document.getElementById("mod-book-title");
-  modTitleInput.removeAttribute("disabled");
-  modTitleInput.style.color = "green";
-  modTitleInputEdit.style.color = "green";
-  modTitleInputEdit.style.cursor = "default";
-});
-
-const newObj = new FormCreator();
-// const newElem = newObj.elementCreator2();

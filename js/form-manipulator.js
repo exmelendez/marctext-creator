@@ -188,4 +188,38 @@ class FormCreator {
 
     return element;
   }
+
+  searchResultRender() {
+    const FORM_H1_TAG = document.querySelector('form>h1');
+    FORM_H1_TAG.textContent = "Search Results";
+
+    const NEW_DIV = document.createElement('div');
+    NEW_DIV.setAttribute('id', 'page-picker');
+
+    const SPAN1 = document.createElement('span');
+    const LEFT_PAGE_BTN = document.createElement('i');
+    LEFT_PAGE_BTN.classList.add('fas');
+    LEFT_PAGE_BTN.classList.add('fa-caret-left');
+    SPAN1.appendChild(LEFT_PAGE_BTN);
+
+    const SPAN2 = document.createElement('span');
+    SPAN2.textContent = '2';
+
+    const SPAN3 = document.createElement('span');
+    const RIGHT_PAGE_BTN = document.createElement('i');
+    RIGHT_PAGE_BTN.classList.add('fas');
+    RIGHT_PAGE_BTN.classList.add('fa-caret-right');
+    SPAN3.appendChild(RIGHT_PAGE_BTN);
+
+    NEW_DIV.appendChild(SPAN1);
+    NEW_DIV.appendChild(SPAN2);
+    NEW_DIV.appendChild(SPAN3);
+
+    FORM_H1_TAG.append(NEW_DIV);
+  }
+
+  manualEntryRender() {
+    const FORM_H1_TAG = document.querySelector('form>h1');
+    FORM_H1_TAG.textContent = "Manual Entry";
+  }
 }
