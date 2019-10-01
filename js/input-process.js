@@ -40,6 +40,54 @@ class InputProcessor {
       
         return lastName + firstName;
       }
+
+      searchBooksApi = input => {
+        fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${input}`)
+          .then(response => {
+            return response.json();
+          })
+          .then(data => {
+            if (data["totalItems"] < 1) {
+              this.snackbar('No results found');
+            } else {
+                const entryContainer = document.getElementById("book-entry-cont");
+                const test = new FormCreator();
+                entryContainer.style.visibility = "visible";
+                test.searchResultRender();
+                /*
+              statusP.innerHTML = `Found: ${data["items"][0]["volumeInfo"]["title"]}`;
+      
+              console.log(input);
+              console.log(data["items"][0]["volumeInfo"]["title"]);
+              // console.log(data['items'][0]['volumeInfo']['authors'][0]);
+              console.log(
+                authorNameFormatter(data["items"][0]["volumeInfo"]["authors"][0])
+              );
+              console.log(data["items"][0]["volumeInfo"]["pageCount"]);
+              console.log(data["items"][0]["volumeInfo"]["publisher"]);
+              console.log(
+                data["items"][0]["volumeInfo"]["publishedDate"].slice(0, 4)
+              );
+              console.log(data["items"][0]["volumeInfo"]["description"]);
+              */
+            }
+          })
+          .catch(err => {
+            // Do something for an error here
+            console.log("Error w/ fetch API/Function");
+          });
+      }
+
+      snackbar = message => {
+        const snackDiv = document.getElementById("snackbar");
+      
+        snackDiv.textContent = message;
+        snackDiv.className = "show";
+      
+        setTimeout(() => {
+          snackDiv.className = snackDiv.className.replace("show", "");
+        }, 5000);
+      };
 }
 
 /*****************
@@ -62,3 +110,4 @@ class InputProcessor {
  * 
  * 
  */
+
