@@ -152,3 +152,6 @@ modTitleInputEdit.addEventListener("click", () => {
   modTitleInputEdit.style.color = "green";
   modTitleInputEdit.style.cursor = "default";
 });
+
+const newObj = new FormCreator();
+// const newElem = newObj.elementCreator2();
