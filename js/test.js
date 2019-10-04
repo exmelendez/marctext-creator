@@ -1,8 +1,6 @@
-//TODO: Create HTML elements that can be dynamically created/used in manual entry and in search modal
-//TODO: Figure out where to place google API/info
 //TODO: Ensure successful creation of manual/modal inputs/forms
 
-// const formCreator = new FormCreator();
+// const formCreator = new FormManipulator();
 // formCreator.createForm();
 
 let book1 = new EntryBook(
@@ -36,69 +34,44 @@ enteredBooks.addEntry(book3);
 
 const ifConnected = window.navigator.onLine;
 
-// function for SNACKBAR
-const snackbar = message => {
-  const snackDiv = document.getElementById("snackbar");
-
-  snackDiv.textContent = message;
-  snackDiv.className = "show";
-
-  setTimeout(() => {
-    snackDiv.className = snackDiv.className.replace("show", "");
-  }, 5000);
-};
-
-/* BUTTONS/LISTENERS TO HAVE MANUAL ENTRY INPUT APPEAR */
 const manEntryAddBtn = document.getElementById("add-man-ent-btn");
 const manEntryCancelBtn = document.getElementById("cancel-man-ent-btn");
 const entryContainer = document.getElementById("book-entry-cont");
+const formManipulator = new FormManipulator();
 
+
+const searchSubmitBtn = document.getElementById("search-submit");
+const statusP = document.getElementById("status-msg");
+
+/**
+ * Click Event Listener for manual form entry button.
+ * This will make the manual entry form visible.
+ */
 manEntryAddBtn.addEventListener("click", () => {
-    const formFormatter = new FormCreator();
+    const formFormatter = new FormManipulator();
     formFormatter.manualEntryRender();
     entryContainer.style.visibility = "visible";
 });
 
-manEntryCancelBtn.addEventListener("click", () => {
-  entryContainer.style.visibility = "hidden";
-  snackbar("entry cancelled");
-});
+/**
+ * Click Event Listener for manual entry form cancel button.
+ * This will reset the manual form and make it hidden.
+ */
+manEntryCancelBtn.addEventListener("click", formManipulator.removeResetForm);
 
-const searchInput = document.getElementById("isbn-input");
-const searchSubmitBtn = document.getElementById("search-submit");
-const statusP = document.getElementById("status-msg");
-
+/**
+ * Click Event Listener for ISBN Search Btn
+ */
 searchSubmitBtn.addEventListener("click", () => {
-  !ifConnected ? snackbar("not connected to internet") : searchProcess();
+    const inputProcessor = new InputProcessor();
+    inputProcessor.searchProcess(formManipulator);
+    // !ifConnected ? snackbar("not connected to internet") : searchProcess();
+  });
+
+  document.querySelectorAll('#page-picker>span')[0].addEventListener('click', () => {
+      formManipulator.searchPageArrowRender('left');
+  });
+
+  document.querySelectorAll('#page-picker>span')[2].addEventListener('click', () => {
+    formManipulator.searchPageArrowRender('right');
 });
-
-const searchProcess = () => {
-    let inputValue = searchInput.value;
-    // const formFormatter = new FormCreator();
-    const INPUT_PROCESS = new InputProcessor();
-
-  if (inputValue) {
-    INPUT_PROCESS.searchBooksApi(inputValue);
-    searchInput.value = "";
-    
-  } else {
-    snackbar("enter valid value");
-  }
-
-};
-
-const authorNameFormatter = name => {
-  let firstName = "";
-  let lastName = "";
-
-  for (let i = 0; i < name.length; i++) {
-    if (name.charAt(i) != " ") {
-      firstName += name.charAt(i);
-    } else {
-      lastName = name.slice(i + 1, name.length) + ", ";
-      break;
-    }
-  }
-
-  return lastName + firstName;
-};
