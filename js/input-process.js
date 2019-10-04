@@ -4,10 +4,11 @@
  */
 class InputProcessor {
   /**
-   * Returns boolean provided argument does not contain only white space.
+   * Returns boolean baed on length of given string. The given input is trimmed 
+   * to eliminate any white space. It will return true if the length is greater than 0.
    * @param {string} input Book property from HTML input
    */
-  static hasValue(input) {
+  hasValue(input) {
     return input.trim().length > 0;
   }
 
@@ -16,17 +17,75 @@ class InputProcessor {
    * @param {string} input String to convert to number
    * @returns {number} Converted string as a Number type.
    */
-  static convertStringToNumber(input) {
+  convertStringToNumber(input) {
     let trimInput = input.trim();
     let containsOnlyNumbers = !/\D/.test(trimInput);
-    containsOnlyNumbers
-      ? (trimInput = Number(trimInput))
-      : console.log("incorrect input values in convertToString method.");
+
+    if (containsOnlyNumbers) {
+        trimInput = Number(trimInput)
+    } else {
+        console.log("incorrect input values in convertToString method.");
+        this.snackbar('Only enter numbers');
+    }
 
     return trimInput;
   }
 
-  static authorNameFormatter(author) {
+  searchProcess = (form) => {
+    // const inputValue = document.getElementById("isbn-input").value;
+    const inputValue = '9780394800011';
+
+   if (this.hasValue(inputValue)) {
+       if (typeof this.convertStringToNumber(inputValue) === 'number') {
+           this.searchBooksApi(form, inputValue);
+       }
+   } else {
+       console.log('searchProcess input is empty');
+       this.snackbar('Do not leave search field empty.');
+   }
+};
+
+/**
+ * Takes a number input which it will use to search the Google Books API 
+ * and then use the fetch method to return a JSON.
+ * @param {number} input number it will use to search the google books API
+ */
+  searchBooksApi = (form, input) => {
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${input}`)
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        if (data["totalItems"] < 1) {
+          this.snackbar("No results found");
+        } else {
+          document.getElementById("book-entry-cont").style.visibility = "visible";
+        //   const form = new FormManipulator();
+          form.multiSearchPageRender(data);
+        }
+      })
+      .catch(err => {
+        console.log("Error w/ fetch API/Function");
+        this.snackbar('API Error');
+      });
+  };
+
+  /**
+   * Given a string parameter it will output that string as a popup/snack bar box on the front end.
+   * @param {string} input String to display to user
+   */
+  snackbar = message => {
+    const snackDiv = document.getElementById("snackbar");
+
+    snackDiv.textContent = message;
+    snackDiv.className = "show";
+
+    setTimeout(() => {
+      snackDiv.className = snackDiv.className.replace("show", "");
+    }, 5000);
+  };
+
+  authorNameFormatter(author) {
     let firstName = "";
     let lastName = "";
 
@@ -42,53 +101,6 @@ class InputProcessor {
     return lastName + firstName;
   }
 
-  searchBooksApi = input => {
-    fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${input}`)
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        if (data["totalItems"] < 1) {
-          this.snackbar("No results found");
-        } else {
-          const entryContainer = document.getElementById("book-entry-cont");
-          const test = new FormCreator();
-          entryContainer.style.visibility = "visible";
-          test.searchResultRender(data);
-          /*
-              statusP.innerHTML = `Found: ${data["items"][0]["volumeInfo"]["title"]}`;
-      
-              console.log(input);
-              console.log(data["items"][0]["volumeInfo"]["title"]);
-              // console.log(data['items'][0]['volumeInfo']['authors'][0]);
-              console.log(
-                authorNameFormatter(data["items"][0]["volumeInfo"]["authors"][0])
-              );
-              console.log(data["items"][0]["volumeInfo"]["pageCount"]);
-              console.log(data["items"][0]["volumeInfo"]["publisher"]);
-              console.log(
-                data["items"][0]["volumeInfo"]["publishedDate"].slice(0, 4)
-              );
-              console.log(data["items"][0]["volumeInfo"]["description"]);
-              */
-        }
-      })
-      .catch(err => {
-        // Do something for an error here
-        console.log("Error w/ fetch API/Function");
-      });
-  };
-
-  snackbar = message => {
-    const snackDiv = document.getElementById("snackbar");
-
-    snackDiv.textContent = message;
-    snackDiv.className = "show";
-
-    setTimeout(() => {
-      snackDiv.className = snackDiv.className.replace("show", "");
-    }, 5000);
-  };
 }
 
 /*****************
