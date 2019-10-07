@@ -4,13 +4,15 @@
  */
 class InputProcessor {
   /**
-   * Returns boolean baed on length of given string. The given input is trimmed 
+   * Returns boolean baed on length of given string. The given input is trimmed
    * to eliminate any white space. It will return true if the length is greater than 0.
    * @param {string} input Book property from HTML input
    */
   hasValue(input) {
     return input.trim().length > 0;
   }
+
+  /* MAY REMOVE SINCE IT IS NOT IN USE AND ISBNS ARE ABLE TO HAVE LETTER CHARACTERS */
 
   /**
    * Given a string that only contains numbers it will convert and return the same value as a number type.
@@ -22,34 +24,35 @@ class InputProcessor {
     let containsOnlyNumbers = !/\D/.test(trimInput);
 
     if (containsOnlyNumbers) {
-        trimInput = Number(trimInput)
+      trimInput = Number(trimInput);
     } else {
-        console.log("incorrect input values in convertToString method.");
-        this.snackbar('Only enter numbers');
+      console.log("incorrect input values in convertToString method.");
+      this.snackbar("Only enter numbers");
     }
 
     return trimInput;
   }
 
-  searchProcess = (form) => {
-    // const inputValue = document.getElementById("isbn-input").value;
-    const inputValue = '9780394800011';
+  searchProcess = form => {
+    const input = document.getElementById("isbn-input");
+    const inputValue = input.value;
+    // const inputValue = "9781451648539"; //Sample ISBN w/ one return result
+    // const inputValue = "9780394800011"; //Sample ISBN w/ more than one return result
 
-   if (this.hasValue(inputValue)) {
-       if (typeof this.convertStringToNumber(inputValue) === 'number') {
-           this.searchBooksApi(form, inputValue);
-       }
-   } else {
-       console.log('searchProcess input is empty');
-       this.snackbar('Do not leave search field empty.');
-   }
-};
+    if (this.hasValue(inputValue)) {
+      this.searchBooksApi(form, inputValue);
+      input.value = "";
+    } else {
+      console.log("searchProcess input is empty");
+      this.snackbar("Do not leave search field empty.");
+    }
+  };
 
-/**
- * Takes a number input which it will use to search the Google Books API 
- * and then use the fetch method to return a JSON.
- * @param {number} input number it will use to search the google books API
- */
+  /**
+   * Takes a number input which it will use to search the Google Books API
+   * and then use the fetch method to return a JSON.
+   * @param {number} input number it will use to search the google books API
+   */
   searchBooksApi = (form, input) => {
     fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${input}`)
       .then(response => {
@@ -59,14 +62,14 @@ class InputProcessor {
         if (data["totalItems"] < 1) {
           this.snackbar("No results found");
         } else {
-          document.getElementById("book-entry-cont").style.visibility = "visible";
-        //   const form = new FormManipulator();
-          form.multiSearchPageRender(data);
+          document.getElementById("book-entry-cont").style.visibility =
+            "visible";
+          form.searchFormRender(data);
         }
       })
       .catch(err => {
         console.log("Error w/ fetch API/Function");
-        this.snackbar('API Error');
+        this.snackbar("API Error");
       });
   };
 
@@ -100,7 +103,6 @@ class InputProcessor {
 
     return lastName + firstName;
   }
-
 }
 
 /*****************
