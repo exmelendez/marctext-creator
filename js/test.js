@@ -39,7 +39,6 @@ const manEntryCancelBtn = document.getElementById("cancel-man-ent-btn");
 const entryContainer = document.getElementById("book-entry-cont");
 const formManipulator = new FormManipulator();
 
-
 const searchSubmitBtn = document.getElementById("search-submit");
 const statusP = document.getElementById("status-msg");
 
@@ -48,9 +47,8 @@ const statusP = document.getElementById("status-msg");
  * This will make the manual entry form visible.
  */
 manEntryAddBtn.addEventListener("click", () => {
-    const formFormatter = new FormManipulator();
-    formFormatter.manualEntryRender();
-    entryContainer.style.visibility = "visible";
+  formManipulator.manualEntryRender();
+  entryContainer.style.visibility = "visible";
 });
 
 /**
@@ -63,15 +61,19 @@ manEntryCancelBtn.addEventListener("click", formManipulator.removeResetForm);
  * Click Event Listener for ISBN Search Btn
  */
 searchSubmitBtn.addEventListener("click", () => {
-    const inputProcessor = new InputProcessor();
-    inputProcessor.searchProcess(formManipulator);
-    // !ifConnected ? snackbar("not connected to internet") : searchProcess();
-  });
-
-  document.querySelectorAll('#page-picker>span')[0].addEventListener('click', () => {
-      formManipulator.searchPageArrowRender('left');
-  });
-
-  document.querySelectorAll('#page-picker>span')[2].addEventListener('click', () => {
-    formManipulator.searchPageArrowRender('right');
+  formManipulator.remove();
+  const inputProcessor = new InputProcessor();
+  inputProcessor.searchProcess(formManipulator);
 });
+
+document
+  .querySelectorAll("#page-picker>span")[0]
+  .addEventListener("click", () => {
+    formManipulator.searchPageArrowRender("left");
+  });
+
+document
+  .querySelectorAll("#page-picker>span")[2]
+  .addEventListener("click", () => {
+    formManipulator.searchPageArrowRender("right");
+  });
