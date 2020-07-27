@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>SBCS Marc Creator</title>
+
+    <link rel="stylesheet" href="css/style-u.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+
+
+  </head>
+  <body class="full-center-flex">
+
+    <header class="header">
+      <a class="header__logo-link" href="#">
+        <p class="header__logo">SBCS Marc Creator</p>
+      </a>
+
+      <form class="search-form">
+        <input class="search-form__input searchTerm" type="number" placeholder="Enter ISBN" minlength="1" required>
+        <button type="submit" class="searchButton"> <!-- TODO up to here -->
+          <i class="fa fa-search"></i>
+        </button>
+      </form>
+
+    </header>
+
+    <div id="status-bar">
+      <span id="entry-list-stat">entries: 0</span>
+
+      <div>
+        <i id="add-man-ent-btn" class="fas fa-plus"></i>
+        <i class="far fa-save"></i>
+      </div>
+    </div>
+
+    <!-- 
+
+
+      MANUAL INPUT FORM HERE
+
+
+     -->
+
+    <div id="book-entry-cont">
+      <form>
+        <h1>Manual Entry</h1>
+
+        <!-- Multi Page Result Picker -->
+        <!-- Only shows when results are more than one -->
+        <div id="page-picker">
+          <span><i class="fas fa-caret-left"></i></span>
+          <span class="section" data-crnt-indx="0">1</span>
+          <span><i class="fas fa-caret-right"></i></span>
+        </div>
+
+        <fieldset>
+          <label class="req-field" for="title-entry-inp">Title:</label>
+          <input type="text" name="title-entry-inp" value="" />
+
+          <label class="semi-req-field" for="author-entry-inp">Author:</label>
+          <input type="text" name="title-entry-inp" value="" />
+
+          <label class="req-field" for="language-entry-inp">Language:</label>
+          <select name="language-entry-inp">
+            <option selected disabled>Select Language</option>
+            <option value="eng">English</option>
+            <option value="spa">Spanish</option>
+            <option value="dual">Both</option>
+          </select>
+
+          <div>
+            <label class="" for="isbn-entry-inp">ISBN:</label>
+            <input type="number" name="isbn-entry-inp" value="" />
+          </div>
+
+          <label class="req-field" for="barcode-entry-inp">Barcode:</label>
+          <input type="number" name="barcode-entry-inp" value="" />
+
+          <label class="" for="upc-entry-inp">UPC:</label>
+          <input type="number" name="upc-entry-inp" value="" />
+
+          <label class="" for="price-entry-inp">Price:</label>
+          <input type="number" name="price-entry-inp" value="" />
+
+          <label class="" for="pages-entry-inp">Total Pages:</label>
+          <input type="number" name="pages-entry-inp" value="" />
+
+          <label class="req-field" for="genre-entry-inp">Genre:</label>
+          <select name="genre-entry-inp">
+            <option selected disabled>Select Genre</option>
+
+            <optgroup label="Traditional">
+              <option selected disabled value="">Genre</option>
+              <option value="SBJBIO">Biography</option>
+              <option value="SBEF">Easy Fiction</option>
+              <option value="SBFLM">Fairytale/Folklore/Legend/Myth</option>
+              <option value="SBJF">Fiction</option>
+
+              <option value="SBJNF">Non-Fiction</option>
+              <option value="SBPB">Picture Book</option>
+              <option value="SBPO">Poetry</option>
+              <option value="SBPROF">Professional</option>
+              <option value="SBREF">Reference</option>
+              <option value="SBSPBI">Spanish Biography</option>
+              <option value="SBSPEF">Spanish Easy Fiction</option>
+              <option value="SBSPFLM"
+                >Spanish Fairytale/Folklore/Legend/Myth</option
+              >
+              <option value="SBSPJF">Spanish Fiction</option>
+              <option value="SBSPJNF">Spanish Non-Fiction</option>
+              <option value="SBSPPB">Spanish Picture Book</option>
+              <option value="SBSPPO">Spanish Poetry</option>
+            </optgroup>
+
+            <optgroup label="Large">
+              <option value="SBLPFLM">LP-Fairytale/Folklore/Legend/Myth</option>
+              <option value="SBLPMA">LP-Math</option>
+              <option value="SBLPRE">LP-Reference</option>
+              <option value="SBLPSC">LP-Science</option>
+              <option value="SBLPSK">LP-Shared Reading Grade K</option>
+              <option value="SBLPS1">LP-Shared Reading Grade 1</option>
+              <option value="SBLPS2">LP-Shared Reading Grade 2</option>
+              <option value="SBLPSS">LP-Social Studies</option>
+              <option value="SBLPSPFLM"
+                >LP-Spanish Fairytale/Folklore/Legend/Myth</option
+              >
+              <option value="SBLPSPMA">LP-Spanish Math</option>
+              <option value="SBLPSPSC">LP-Spanish Science</option>
+              <option value="SBLPSPSK"
+                >LP-Spanish Shared Reading Grade K</option
+              >
+              <option value="SBLPSPS1"
+                >LP-Spanish Shared Reading Grade 1</option
+              >
+              <option value="SBLPSPS2"
+                >LP-Spanish Shared Reading Grade 2</option
+              >
+              <option value="SBLPSPSS">LP-Spanish Social Studies</option>
+            </optgroup>
+          </select>
+
+          <label class="" for="pubLocale-entry-inp">Published Location:</label>
+          <input type="text" name="pubLocale-entry-inp" value="" />
+
+          <label class="semi-req-field" for="publisher-entry-inp"
+            >Publisher:</label
+          >
+          <input type="text" name="publisher-entry-inp" value="" />
+
+          <label class="req-field" for="yearPub-entry-inp"
+            >Year Published:</label
+          >
+          <input
+            id="last-inp"
+            type="number"
+            name="yearPub-entry-inp"
+            value=""
+          />
+
+          <div>
+            <label></label>
+            <input type="checkbox" name="yearUnknown-entry-inp" />
+            <label class="light" for="yearUnknown-entry-inp"
+              >Aproximate Year</label
+            >
+          </div>
+        </fieldset>
+
+        <div id="man-entry-form-btn-cont">
+          <button id="cancel-man-ent-btn" type="button">
+            Cancel
+          </button>
+
+          <!-- API ENTRY SECTION -->
+
+          <span class="section"><i class="fas fa-edit"></i></span>
+
+          <!-- END of API Entry section -->
+
+          <button id="save-man-ent-btn" type="submit">Save</button>
+        </div>
+      </form>
+    </div>
+
+    <div id="snackbar">
+      Some Texty text
+    </div>
+
+    <script src="js/book-entry.js"></script>
+    <script src="js/book-entries.js"></script>
+    <script src="js/input-process.js"></script>
+    <script src="js/form-manipulator.js"></script>
+    <script src="js/test.js"></script>
+  </body>
+</html>
