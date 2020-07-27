@@ -13,11 +13,8 @@
       integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
       crossorigin="anonymous"
     />
-
-
   </head>
   <body class="full-center-flex">
-
     <!-- 
 
       HEADER OF PAGE
@@ -29,7 +26,7 @@
       <div class="search">
         <input
           id="isbn-input"
-          type="number"
+          type="text"
           class="searchTerm"
           placeholder="Enter ISBN # of book"
         />
@@ -85,7 +82,7 @@
 
           <div>
             <label class="" for="isbn-entry-inp">ISBN:</label>
-            <input type="number" name="isbn-entry-inp" value="" />
+            <input type="text" name="isbn-entry-inp" value="" />
           </div>
 
           <label class="req-field" for="barcode-entry-inp">Barcode:</label>
@@ -197,9 +194,7 @@
       </form>
     </div>
 
-    <div id="snackbar">
-      Some Texty text
-    </div>
+    <div id="snackbar"></div>
 
     <script src="js/book-entry.js"></script>
     <script src="js/book-entries.js"></script>
